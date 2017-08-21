@@ -13,6 +13,7 @@
 		13C46DC81F4BA39A004FD91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC71F4BA39A004FD91F /* Assets.xcassets */; };
 		13C46DCB1F4BA39A004FD91F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC91F4BA39A004FD91F /* LaunchScreen.storyboard */; };
 		13C46DD61F4BA39A004FD91F /* TexpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DD51F4BA39A004FD91F /* TexpensesUITests.swift */; };
+		13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		13C46DD11F4BA39A004FD91F /* TexpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TexpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C46DD51F4BA39A004FD91F /* TexpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexpensesUITests.swift; sourceTree = "<group>"; };
 		13C46DD71F4BA39A004FD91F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				13C46DC71F4BA39A004FD91F /* Assets.xcassets */,
 				13C46DC91F4BA39A004FD91F /* LaunchScreen.storyboard */,
 				13C46DCC1F4BA39A004FD91F /* Info.plist */,
+				13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */,
 			);
 			path = Texpenses;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */,
 				13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
 			);
