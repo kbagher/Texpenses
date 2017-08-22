@@ -25,18 +25,10 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        tableView.tableFooterView = UIView()
         
     }
     
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
-        return false;
-//        if let secondaryAsNavController = secondaryViewController as? UINavigationController {
-//            if let topAsDetailController = secondaryAsNavController.topViewController as? TransactionDetailsViewController {
-//                return false
-//            }
-//        }
-//        return true
-    }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
