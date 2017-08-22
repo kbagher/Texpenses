@@ -13,7 +13,7 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     let transactions = [(title:"Hiking trip fees",price:"$1,212.00"),
                         (title:"Sunglasses for Rayan",price:"$129.00"),
                         (title:"Water bottle",price:"$1.99"),
-                        (title:"Chips (snack)",price:"$2.12"),
+                        (title:"Chips (snack) jdnasjd ajkd jaskdsajkdhsaj",price:"$2.12"),
                         (title:"Launch - Pasta",price:"$20.99")]
     
     override func viewDidLoad() {
