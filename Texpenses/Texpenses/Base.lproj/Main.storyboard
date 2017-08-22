@@ -110,7 +110,6 @@
                                         </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.95537328259999998" green="0.95537328259999998" blue="0.95537328259999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="customSize" width="168" height="120"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExpenseCell" id="0Mh-lk-0pI">
@@ -136,7 +135,6 @@
                                         </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.95537328259274612" green="0.95537328259274612" blue="0.95537328259274612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="customSize" width="165" height="120"/>
                             </collectionViewCell>
                         </cells>

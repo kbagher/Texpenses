@@ -71,8 +71,13 @@ class DashboardCollectionViewController: UICollectionViewController {
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
+
         // Configure the cell
+        cell.contentView.layer.masksToBounds = true
+        cell.contentView.layer.borderWidth = 1
+        cell.contentView.layer.cornerRadius = 12
+        cell.contentView.layer.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0).cgColor
+        cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
     
         return cell
     }
