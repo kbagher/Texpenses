@@ -14,6 +14,7 @@
 		13C46DD61F4BA39A004FD91F /* TexpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DD51F4BA39A004FD91F /* TexpensesUITests.swift */; };
 		13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */; };
 		13C46DE31F4BADCE004FD91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DE21F4BADCE004FD91F /* Assets.xcassets */; };
+		13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		13C46DD71F4BA39A004FD91F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCollectionViewController.swift; sourceTree = "<group>"; };
 		13C46DE21F4BADCE004FD91F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				13C46DC91F4BA39A004FD91F /* LaunchScreen.storyboard */,
 				13C46DCC1F4BA39A004FD91F /* Info.plist */,
 				13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */,
+				13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */,
 			);
 			path = Texpenses;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
 				13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */,
 				13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,

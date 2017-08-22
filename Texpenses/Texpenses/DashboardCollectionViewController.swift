@@ -29,12 +29,6 @@ class DashboardCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // implementation of function viewForSupplementaryElementOfKind, for section header of collectionView
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        // returning the search bar for header
-        return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "InfoHeader", for: indexPath)
-    }
 
     /*
     // MARK: - Navigation
@@ -50,29 +44,49 @@ class DashboardCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 2
+        switch section {
+        case 0:
+            return 2
+        default:
+            return 1
+        }
     }
 
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,referenceSizeForHeaderInSection section: Int) -> CGSize{
+//        
+//        return CGSize.zero
+//    }
+
+    // implementation of function viewForSupplementaryElementOfKind, for section header of collectionView
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "InfoHeader", for: indexPath)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch indexPath.item {
+        switch indexPath.section {
         case 0:
-            reuseIdentifier = "CurrencyCell"
-        case 1:
-            reuseIdentifier = "ExpenseCell"
+            switch indexPath.item {
+            case 0:
+                reuseIdentifier = "CurrencyCell"
+            default:
+                reuseIdentifier = "ExpenseCell"
+            }
         default:
-            reuseIdentifier = ""
+            reuseIdentifier = "RateCell"
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
 
-        // Configure the cell
+        // Cell desing (border and background color
         cell.contentView.layer.masksToBounds = true
         cell.contentView.layer.borderWidth = 1
         cell.contentView.layer.cornerRadius = 12
