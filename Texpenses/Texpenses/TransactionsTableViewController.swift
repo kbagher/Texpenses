@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionsTableViewController: UITableViewController {
+class TransactionsTableViewController: UITableViewController,UISplitViewControllerDelegate {
 
     let transactions = [(title:"Hiking trip fees",price:"$1,212.00"),
                         (title:"Sunglasses for Rayan",price:"$129.00"),
@@ -24,6 +24,22 @@ class TransactionsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+    }
+    
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController!, ontoPrimaryViewController primaryViewController:UIViewController!) -> Bool {
+        return false;
+//        if let secondaryAsNavController = secondaryViewController as? UINavigationController {
+//            if let topAsDetailController = secondaryAsNavController.topViewController as? TransactionDetailsViewController {
+//                return false
+//            }
+//        }
+//        return true
+    }
+
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +47,7 @@ class TransactionsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,6 +61,7 @@ class TransactionsTableViewController: UITableViewController {
     }
 
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath)
         
@@ -56,7 +74,12 @@ class TransactionsTableViewController: UITableViewController {
         return cell
     }
  
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showTransactionDetails", sender: indexPath.row)
+    }
 
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

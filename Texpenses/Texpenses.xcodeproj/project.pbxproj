@@ -15,6 +15,7 @@
 		13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */; };
 		13C46DE31F4BADCE004FD91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DE21F4BADCE004FD91F /* Assets.xcassets */; };
 		13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */; };
+		13C46DE71F4BE0D9004FD91F /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE61F4BE0D9004FD91F /* TransactionDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCollectionViewController.swift; sourceTree = "<group>"; };
 		13C46DE21F4BADCE004FD91F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
+		13C46DE61F4BE0D9004FD91F /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				13C46DC01F4BA39A004FD91F /* AppDelegate.swift */,
+				13C46DE61F4BE0D9004FD91F /* TransactionDetailsViewController.swift */,
 				13C46DE21F4BADCE004FD91F /* Assets.xcassets */,
 				13C46DC21F4BA39A004FD91F /* ViewController.swift */,
 				13C46DC41F4BA39A004FD91F /* Main.storyboard */,
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13C46DE71F4BE0D9004FD91F /* TransactionDetailsViewController.swift in Sources */,
 				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
 				13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */,
 				13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */,
@@ -420,6 +424,7 @@
 				13C46DDC1F4BA39A004FD91F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13C46DDD1F4BA39A004FD91F /* Build configuration list for PBXNativeTarget "TexpensesUITests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +433,7 @@
 				13C46DDF1F4BA39A004FD91F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
