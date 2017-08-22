@@ -1,5 +1,5 @@
 //
-//  TransactionsTableViewController.swift
+//  TransactionDetailsTableViewController.swift
 //  Texpenses
 //
 //  Created by Kassem Bagher on 22/8/17.
@@ -8,13 +8,17 @@
 
 import UIKit
 
-class TransactionsTableViewController: UITableViewController,UISplitViewControllerDelegate {
+class TransactionDetailsTableViewController: UITableViewController {
 
-    let transactions = [(title:"Hiking trip fees",price:"$1,212.00"),
-                        (title:"Sunglasses for Rayan",price:"$129.00"),
-                        (title:"Water bottle",price:"$1.99"),
-                        (title:"Chips (snack)",price:"$2.12"),
-                        (title:"Launch - Pasta",price:"$20.99")]
+    @IBOutlet var transactionTitle: UILabel?
+    @IBOutlet var transactionLocation: UILabel?
+    @IBOutlet var countryCurrancyLabel: UILabel?
+    @IBOutlet var countryCurrancy: UILabel?
+    @IBOutlet var baseCurrancyLabel: UILabel?
+    @IBOutlet var baseCurrancy: UILabel?
+    @IBOutlet var exchangeRate: UILabel?
+    @IBOutlet var transactionDate: UILabel?
+    @IBOutlet var transactionTime: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,24 +28,14 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
-        
-        // display master and details on iPad
-        self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
-        
         tableView.tableFooterView = UIView()
-        
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,31 +45,19 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return transactions.count
+        return 5
     }
 
-    
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath)
-        
-        let title:UILabel = cell.viewWithTag(100) as! UILabel
-        let price:UILabel = cell.viewWithTag(200) as! UILabel
-        
-        title.text = transactions[indexPath.item].title
-        price.text = transactions[indexPath.item].price
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
 
         return cell
     }
- 
+    */
 
-    
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showTransactionDetails", sender: indexPath.row)
-    }
-
-    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
