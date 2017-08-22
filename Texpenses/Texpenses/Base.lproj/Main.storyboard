@@ -201,9 +201,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="8y5-Ms-mLf">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Australia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcn-Ac-Le6">
+                                    <rect key="frame" x="41" y="34.5" width="293" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <color key="textColor" red="0.57496929939999997" green="0.57496929939999997" blue="0.57496929939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses from your current trip to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZP-C0-ddF">
+                                    <rect key="frame" x="41" y="15" width="293" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.57496929939999997" green="0.57496929939999997" blue="0.57496929939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="9ZP-C0-ddF" firstAttribute="centerX" secondItem="8y5-Ms-mLf" secondAttribute="centerX" id="Uxs-g1-Ya5"/>
+                                <constraint firstItem="bcn-Ac-Le6" firstAttribute="leading" secondItem="9ZP-C0-ddF" secondAttribute="leading" id="a1x-il-oNs"/>
+                                <constraint firstItem="bcn-Ac-Le6" firstAttribute="top" secondItem="9ZP-C0-ddF" secondAttribute="bottom" constant="5" id="fMT-er-rWf"/>
+                                <constraint firstItem="bcn-Ac-Le6" firstAttribute="centerX" secondItem="8y5-Ms-mLf" secondAttribute="centerX" id="lrf-bv-ctB"/>
+                                <constraint firstItem="bcn-Ac-Le6" firstAttribute="leading" secondItem="8y5-Ms-mLf" secondAttribute="leading" constant="41" id="mfS-tV-c9E"/>
+                                <constraint firstItem="bcn-Ac-Le6" firstAttribute="bottom" secondItem="8y5-Ms-mLf" secondAttribute="bottomMargin" id="mva-lf-gcp"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="transactionCell" id="RJT-4e-Cdv">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RJT-4e-Cdv" id="aVn-tc-YiJ">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
