@@ -1,20 +1,18 @@
 //
-//  TransactionsTableViewController.swift
+//  CurrenciesTableViewController.swift
 //  Texpenses
 //
-//  Created by Kassem Bagher on 22/8/17.
+//  Created by Kassem Bagher on 23/8/17.
 //  Copyright © 2017 Kassem Bagher. All rights reserved.
 //
 
 import UIKit
 
-class TransactionsTableViewController: UITableViewController,UISplitViewControllerDelegate {
+class CurrenciesTableViewController: UITableViewController {
 
-    let transactions = [(title:"Hiking trip fees",price:"$1,212.00"),
-                        (title:"Sunglasses for Rayan",price:"$129.00"),
-                        (title:"Water bottle",price:"$1.99"),
-                        (title:"Chips (snack)",price:"$2.12"),
-                        (title:"Launch - Pasta",price:"$20.99")]
+    let currencies = ["Saudi Riyal (SAR)","Australlian Dollar (AUD)","Brazilian real (BRL)","Egyptian pound (EGP)","American Dollar (USD)"]
+    
+    var selectedCell = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,29 +22,14 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-
-        
-        // display master and details on iPad
-        self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
-        
-        splitViewController?.presentsWithGesture = false
-        
         tableView.tableFooterView = UIView()
-        
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
-    // delete the selected row
-    func deleteRow(atIndexPath index:[IndexPath]) {
-        tableView.deleteRows(at: index, with: UITableViewRowAnimation.automatic)
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,43 +39,35 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return transactions.count
+        return currencies.count
     }
 
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            deleteRow(atIndexPath: [indexPath as IndexPath])
-            tableView.endUpdates()
-        }
-    }
-
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
+
+        let currency:UILabel = cell.viewWithTag(100) as! UILabel
         
-        let title:UILabel = cell.viewWithTag(100) as! UILabel
-        let price:UILabel = cell.viewWithTag(200) as! UILabel
+        currency.text = currencies[indexPath.item]
         
-        title.text = transactions[indexPath.item].title
-        price.text = transactions[indexPath.item].price
+        if indexPath.item == selectedCell {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        }
+        else{
+            cell.accessoryType = UITableViewCellAccessoryType.none
+        }
 
         return cell
     }
  
 
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showTransactionDetails", sender: indexPath.row)
+        tableView.cellForRow(at: IndexPath(row: selectedCell, section: 0))?.accessoryType=UITableViewCellAccessoryType.none
+        selectedCell = indexPath.item
+        tableView.cellForRow(at: indexPath)?.accessoryType=UITableViewCellAccessoryType.checkmark
+        tableView.deselectRow(at: indexPath, animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
-
     
     /*
     // Override to support conditional editing of the table view.

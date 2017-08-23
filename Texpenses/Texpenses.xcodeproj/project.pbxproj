@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */; };
 		136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */; };
+		136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */; };
+		136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA81F4D153C00DEEB3B /* CurrenciesTableViewController.swift */; };
 		13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DC01F4BA39A004FD91F /* AppDelegate.swift */; };
 		13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DC21F4BA39A004FD91F /* ViewController.swift */; };
 		13C46DC61F4BA39A004FD91F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC41F4BA39A004FD91F /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewController.swift; sourceTree = "<group>"; };
+		136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		136D0BA81F4D153C00DEEB3B /* CurrenciesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesTableViewController.swift; sourceTree = "<group>"; };
 		13C46DBD1F4BA39A004FD91F /* Texpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Texpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C46DC01F4BA39A004FD91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13C46DC21F4BA39A004FD91F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +94,9 @@
 				136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */,
 				13C46DE21F4BADCE004FD91F /* Assets.xcassets */,
 				13C46DC21F4BA39A004FD91F /* ViewController.swift */,
+				136D0BA81F4D153C00DEEB3B /* CurrenciesTableViewController.swift */,
 				13C46DC41F4BA39A004FD91F /* Main.storyboard */,
+				136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */,
 				13C46DC91F4BA39A004FD91F /* LaunchScreen.storyboard */,
 				13C46DCC1F4BA39A004FD91F /* Info.plist */,
 				13C46DE01F4BA7CE004FD91F /* DashboardCollectionViewController.swift */,
@@ -158,7 +164,7 @@
 				TargetAttributes = {
 					13C46DBC1F4BA39A004FD91F = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = TS4QR25ESH;
+						DevelopmentTeam = D3Y95JXX6C;
 						ProvisioningStyle = Automatic;
 					};
 					13C46DD01F4BA39A004FD91F = {
@@ -213,12 +219,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */,
 				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
 				13C46DE11F4BA7CE004FD91F /* DashboardCollectionViewController.swift in Sources */,
 				136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */,
 				136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */,
 				13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
+				136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TS4QR25ESH;
+				DEVELOPMENT_TEAM = D3Y95JXX6C;
 				INFOPLIST_FILE = Texpenses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.Texpenses;
@@ -372,7 +380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = TS4QR25ESH;
+				DEVELOPMENT_TEAM = D3Y95JXX6C;
 				INFOPLIST_FILE = Texpenses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.Texpenses;
