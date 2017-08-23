@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3iB-HS-PDJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MeH-X8-dvu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -273,7 +273,16 @@
                             <outlet property="delegate" destination="D78-mW-Zhw" id="H7X-mb-CPd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Transactions" id="KG6-cV-bR4"/>
+                    <navigationItem key="navigationItem" title="Transactions" id="KG6-cV-bR4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ytv-Ro-9wY">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="3iB-HS-PDJ" kind="popoverPresentation" popoverAnchorBarButtonItem="Ytv-Ro-9wY" id="REh-Gb-r2Z">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="ncA-oq-Xvx" kind="showDetail" identifier="showTransactionDetails" id="x7X-tP-LLc"/>
                     </connections>
@@ -282,10 +291,10 @@
             </objects>
             <point key="canvasLocation" x="2303.1999999999998" y="-196.55172413793105"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Expense View Controller-->
         <scene sceneID="gt9-mM-0La">
             <objects>
-                <viewController id="3iB-HS-PDJ" sceneMemberID="viewController">
+                <viewController id="3iB-HS-PDJ" customClass="AddExpenseViewController" customModule="Texpenses" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rZw-Ti-nT6"/>
                         <viewControllerLayoutGuide type="bottom" id="9B7-Hg-upZ"/>
@@ -299,6 +308,9 @@
                                 <items>
                                     <barButtonItem systemItem="stop" id="0QM-dx-lnJ">
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="closeViewWith_sender:" destination="3iB-HS-PDJ" id="I5E-33-UCA"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="N3f-qN-Bn7"/>
                                     <barButtonItem title="Done" id="Izk-T1-jAd">
@@ -306,10 +318,10 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Gad-Jy-uKQ">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gad-Jy-uKQ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="gGT-02-073"/>
+                                    <constraint firstAttribute="height" priority="250" constant="200" id="gGT-02-073"/>
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Australian Souviner UGG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43S-FT-4XX">
@@ -328,6 +340,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3iB-HS-PDJ" id="Kxi-kf-YLX"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6D-bm-bT6">
                                 <rect key="frame" x="134" y="354" width="106" height="18"/>
@@ -357,10 +372,15 @@
                             <constraint firstAttribute="trailingMargin" secondItem="OkE-gn-KX3" secondAttribute="trailing" constant="94" id="kKy-od-kej"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currency" destination="j6D-bm-bT6" id="vGK-Ac-wCM"/>
+                        <outlet property="expense" destination="OkE-gn-KX3" id="HRA-8Y-cST"/>
+                        <outlet property="map" destination="Gad-Jy-uKQ" id="sFl-RZ-9HR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsH-Ev-YBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3156" y="-119.1904047976012"/>
+            <point key="canvasLocation" x="3225" y="-197"/>
         </scene>
         <!--Summary-->
         <scene sceneID="pnB-f1-T0H">
@@ -474,11 +494,11 @@
             </objects>
             <point key="canvasLocation" x="1349.5999999999999" y="1251.7241379310346"/>
         </scene>
-        <!--Item-->
+        <!--Summary-->
         <scene sceneID="mKA-Kz-a3R">
             <objects>
                 <navigationController id="Wms-Ss-DXh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="iXJ-wr-MVF"/>
+                    <tabBarItem key="tabBarItem" title="Summary" id="iXJ-wr-MVF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZIT-Ox-lZX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -523,12 +543,12 @@
             </objects>
             <point key="canvasLocation" x="1350" y="-196"/>
         </scene>
-        <!--Item-->
+        <!--Transactions-->
         <scene sceneID="T8H-TV-dak">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKT-rF-vBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <splitViewController id="PQh-uU-YJS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="a5c-P9-opo"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" id="a5c-P9-opo"/>
                     <connections>
                         <segue destination="Mzq-Ox-1he" kind="relationship" relationship="masterViewController" id="g15-Oz-ULB"/>
                         <segue destination="ncA-oq-Xvx" kind="relationship" relationship="detailViewController" id="NbX-QZ-6Ah"/>
@@ -550,7 +570,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hiking trip fees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsQ-6e-2Gh">
-                                    <rect key="frame" x="128.5" y="12.5" width="118.5" height="19.5"/>
+                                    <rect key="frame" x="128.5" y="12.5" width="118" height="19.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                     <color key="textColor" red="0.57496929939999997" green="0.57496929939999997" blue="0.57496929939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -1014,11 +1034,11 @@
             </objects>
             <point key="canvasLocation" x="2072.8000000000002" y="2021.7391304347827"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="aiQ-1h-eGp">
             <objects>
                 <navigationController id="UXs-CI-Y8V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="OoZ-wS-nDp"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="OoZ-wS-nDp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rab-Ev-gwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1036,6 +1056,6 @@
         <image name="location_pin" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x7X-tP-LLc"/>
+        <segue reference="NbX-QZ-6Ah"/>
     </inferredMetricsTieBreakers>
 </document>
