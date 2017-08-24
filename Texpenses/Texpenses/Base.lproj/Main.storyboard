@@ -593,7 +593,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hiking trip fees" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsQ-6e-2Gh">
-                                    <rect key="frame" x="128.5" y="12.5" width="118.5" height="19.5"/>
+                                    <rect key="frame" x="128" y="12.5" width="119" height="19.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                     <color key="textColor" red="0.57496929939999997" green="0.57496929939999997" blue="0.57496929939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -1079,7 +1079,7 @@
         <image name="location_pin" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="REh-Gb-r2Z"/>
+        <segue reference="UvI-xO-VlX"/>
         <segue reference="x7X-tP-LLc"/>
     </inferredMetricsTieBreakers>
 </document>
