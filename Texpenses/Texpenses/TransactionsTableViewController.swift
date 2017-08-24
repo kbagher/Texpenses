@@ -28,11 +28,13 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         splitViewController?.presentsWithGesture = false
         
         tableView.tableFooterView = UIView()
-        
-        self.hidesBottomBarWhenPushed = true
     }
     
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,7 +86,7 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     }
  
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
-        
+    
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? TransactionDetailsTableViewController else { return false }
         if topAsDetailController.transaction == nil {
@@ -97,6 +99,9 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showTransactionDetails", sender: indexPath.row)
+        if (self.splitViewController?.isCollapsed)! {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 
     
@@ -148,6 +153,8 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
                 let destinationNavigationController = segue.destination as! UINavigationController
                 let dist = destinationNavigationController.topViewController as! TransactionDetailsTableViewController
                 dist.transaction = transactions[indexPath.item]
+                
+                self.tabBarController?.tabBar.isHidden = (self.splitViewController?.isCollapsed)!
             }
         }
         
