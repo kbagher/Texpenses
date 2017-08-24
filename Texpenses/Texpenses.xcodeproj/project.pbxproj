@@ -13,6 +13,8 @@
 		136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA81F4D153C00DEEB3B /* CurrenciesTableViewController.swift */; };
 		136D0BAC1F4D793F00DEEB3B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136D0BAB1F4D793F00DEEB3B /* MapKit.framework */; };
 		136D0BAE1F4DB86F00DEEB3B /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */; };
+		136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BAF1F4E483B00DEEB3B /* Summary.swift */; };
+		136D0BB21F4E55C500DEEB3B /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB11F4E55C500DEEB3B /* Currency.swift */; };
 		13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DC01F4BA39A004FD91F /* AppDelegate.swift */; };
 		13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DC21F4BA39A004FD91F /* ViewController.swift */; };
 		13C46DC61F4BA39A004FD91F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC41F4BA39A004FD91F /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		136D0BA81F4D153C00DEEB3B /* CurrenciesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesTableViewController.swift; sourceTree = "<group>"; };
 		136D0BAB1F4D793F00DEEB3B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		136D0BAF1F4E483B00DEEB3B /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		136D0BB11F4E55C500DEEB3B /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		13C46DBD1F4BA39A004FD91F /* Texpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Texpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C46DC01F4BA39A004FD91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13C46DC21F4BA39A004FD91F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 			children = (
 				13C46DC01F4BA39A004FD91F /* AppDelegate.swift */,
 				136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */,
+				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
+				136D0BB11F4E55C500DEEB3B /* Currency.swift */,
 				136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */,
 				136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */,
 				13C46DE21F4BADCE004FD91F /* Assets.xcassets */,
@@ -245,8 +251,10 @@
 				136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */,
 				136D0BAE1F4DB86F00DEEB3B /* AddExpenseViewController.swift in Sources */,
 				136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */,
+				136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */,
 				13C46DC31F4BA39A004FD91F /* ViewController.swift in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
+				136D0BB21F4E55C500DEEB3B /* Currency.swift in Sources */,
 				136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

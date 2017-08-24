@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class SummaryCollectionViewController: UICollectionViewController {
 
+    var items = Summary.init().getDummyData()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,13 +51,31 @@ class SummaryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 10
+        return items.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "summaryCell", for: indexPath)
-    
+
+        
+        let countryName:UILabel = cell.viewWithTag(100)! as! UILabel
+        let date:UILabel = cell.viewWithTag(200)! as! UILabel
+        let baseCurrency:UILabel = cell.viewWithTag(300)! as! UILabel
+        let baseExpenses:UILabel = cell.viewWithTag(400)! as! UILabel
+        let countryCurrency:UILabel = cell.viewWithTag(500)! as! UILabel
+        let countryExpenses:UILabel = cell.viewWithTag(600)! as! UILabel
+        let exchangeRate:UILabel = cell.viewWithTag(700)! as! UILabel
+        
+
+        countryName.text = items[indexPath.item].countryName
+        countryExpenses.text = items[indexPath.item].countryExpenses
+        countryCurrency.text = items[indexPath.item].countryCurrency
+        date.text = items[indexPath.item].fromDate + " - " + items[indexPath.item].toDate
+        baseCurrency.text = items[indexPath.item].baseCurrency
+        baseExpenses.text = items[indexPath.item].baseExpenses
+        exchangeRate.text = "Average exchange rate 1 " + items[indexPath.item].countryCurrency + " = " + items[indexPath.item].exchangeRate + " " + items[indexPath.item].baseCurrency
+
         // Configure the cell
         cell.contentView.layer.masksToBounds = true
         cell.contentView.layer.borderWidth = 1

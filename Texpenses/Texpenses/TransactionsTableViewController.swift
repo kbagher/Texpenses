@@ -33,6 +33,7 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         
         tableView.tableFooterView = UIView()
         
+        self.hidesBottomBarWhenPushed = true
     }
     
 

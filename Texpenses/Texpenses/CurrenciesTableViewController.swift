@@ -10,7 +10,7 @@ import UIKit
 
 class CurrenciesTableViewController: UITableViewController {
 
-    let currencies = ["Saudi Riyal (SAR)","Australlian Dollar (AUD)","Brazilian real (BRL)","Egyptian pound (EGP)","American Dollar (USD)"]
+    let currencies = Currency.init().getDummyData()
     
     var selectedCell = 1
     
@@ -48,7 +48,7 @@ class CurrenciesTableViewController: UITableViewController {
 
         let currency:UILabel = cell.viewWithTag(100) as! UILabel
         
-        currency.text = currencies[indexPath.item]
+        currency.text = "\(currencies[indexPath.item].countryName) (\(currencies[indexPath.item].currency))"
         
         if indexPath.item == selectedCell {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark

@@ -36,6 +36,12 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
 
     }
     
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        print("ACTION")
+        return false
+    }
+
+    
     @IBAction func closeView(_sender : AnyObject){
         expense.endEditing(true)
         dismiss(animated: true, completion: nil)
@@ -43,14 +49,19 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
 
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("CCC")
+        locationManager.stopUpdatingLocation()
+        
         let location = locations.last!
         
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         map.setRegion(region, animated: true)
-
+        
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        map.removeAnnotations(map.annotations)
+        map.addAnnotation(myAnnotation)
     }
 
 
