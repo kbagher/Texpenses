@@ -316,7 +316,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spent so far" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jO9-Wg-8E8">
-                                        <rect key="frame" x="6" y="52" width="154" height="21"/>
+                                        <rect key="frame" x="48.5" y="52" width="69" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="Kbu-Dx-nII"/>
                                         </constraints>
@@ -379,8 +379,8 @@
                                         <include reference="pnW-o5-12X"/>
                                         <include reference="0jr-S8-Njf"/>
                                         <include reference="CzQ-tA-byq"/>
-                                        <include reference="PZO-KV-Bne"/>
-                                        <include reference="xJX-1U-JcT"/>
+                                        <exclude reference="PZO-KV-Bne"/>
+                                        <exclude reference="xJX-1U-JcT"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -783,7 +783,7 @@
                                 <exclude reference="Xel-Zb-EdE"/>
                                 <include reference="cC0-a6-epd"/>
                                 <exclude reference="lhH-19-0DJ"/>
-                                <include reference="spQ-b1-TjH"/>
+                                <exclude reference="spQ-b1-TjH"/>
                                 <exclude reference="f4h-jj-RZg"/>
                                 <exclude reference="oJ9-NX-ueS"/>
                             </mask>
