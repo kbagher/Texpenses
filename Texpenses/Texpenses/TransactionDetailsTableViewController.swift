@@ -9,16 +9,13 @@
 import UIKit
 
 class TransactionDetailsTableViewController: UITableViewController {
-
-    @IBOutlet var transactionTitle: UILabel?
-    @IBOutlet var transactionLocation: UILabel?
-    @IBOutlet var countryCurrancyLabel: UILabel?
-    @IBOutlet var countryCurrancy: UILabel?
-    @IBOutlet var baseCurrancyLabel: UILabel?
-    @IBOutlet var baseCurrancy: UILabel?
-    @IBOutlet var exchangeRate: UILabel?
-    @IBOutlet var transactionDate: UILabel?
-    @IBOutlet var transactionTime: UILabel?
+    
+    var transaction: Transaction? {
+        didSet {
+            // Update the view.
+            configureView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +28,28 @@ class TransactionDetailsTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
 
+    func configureView() {
+        // Update the user interface for the detail item.
+        if let detail = transaction {
+            let title:UILabel = tableView.tableHeaderView?.viewWithTag(100) as! UILabel
+            let location:UILabel = tableView.tableHeaderView?.viewWithTag(200) as! UILabel
+            let countryCost:UILabel = tableView.cellForRow(at: IndexPath(item: 0, section: 0))?.viewWithTag(200) as! UILabel
+            let baseCost:UILabel = tableView.cellForRow(at: IndexPath(item: 1, section: 0))?.viewWithTag(200) as! UILabel
+            let rate:UILabel = tableView.cellForRow(at: IndexPath(item: 2, section: 0))?.viewWithTag(200) as! UILabel
+            let date:UILabel = tableView.cellForRow(at: IndexPath(item: 3, section: 0))?.viewWithTag(200) as! UILabel
+            let time:UILabel = tableView.cellForRow(at: IndexPath(item: 4, section: 0))?.viewWithTag(200) as! UILabel
+            
+            title.text = detail.title
+            location.text = detail.locationName
+            countryCost.text = detail.countryCost
+            baseCost.text = detail.baseCost
+            rate.text = detail.exchangeRate
+            date.text = detail.date
+            time.text = detail.time
+        }
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

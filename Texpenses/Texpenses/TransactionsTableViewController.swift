@@ -10,11 +10,7 @@ import UIKit
 
 class TransactionsTableViewController: UITableViewController,UISplitViewControllerDelegate {
 
-    let transactions = [(title:"Hiking trip fees",price:"$1,212.00"),
-                        (title:"Sunglasses for Rayan",price:"$129.00"),
-                        (title:"Water bottle",price:"$1.99"),
-                        (title:"Chips (snack)",price:"$2.12"),
-                        (title:"Launch - Pasta",price:"$20.99")]
+    let transactions = Transaction.init().getDummyData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +78,7 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         let price:UILabel = cell.viewWithTag(200) as! UILabel
         
         title.text = transactions[indexPath.item].title
-        price.text = transactions[indexPath.item].price
+        price.text = transactions[indexPath.item].countryCost
 
         return cell
     }
@@ -130,14 +126,23 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showTransactionDetails" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let destinationNavigationController = segue.destination as! UINavigationController
+                let dist = destinationNavigationController.topViewController as! TransactionDetailsTableViewController
+                dist.transaction = transactions[indexPath.item]
+            }
+        }
+        
     }
-    */
+ 
 
 }
