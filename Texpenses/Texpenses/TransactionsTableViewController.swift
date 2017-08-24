@@ -24,7 +24,7 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         
         // display master and details on iPad
         self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
-        
+        self.splitViewController?.delegate = self
         splitViewController?.presentsWithGesture = false
         
         tableView.tableFooterView = UIView()
@@ -83,7 +83,16 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         return cell
     }
  
-
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
+        
+        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
+        guard let topAsDetailController = secondaryAsNavController.topViewController as? TransactionDetailsTableViewController else { return false }
+        if topAsDetailController.transaction == nil {
+            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+            return true
+        }
+        return false
+    }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
