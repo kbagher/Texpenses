@@ -18,7 +18,9 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var expensesSoFar: UILabel!
     @IBOutlet weak var rate: UITextField!
     @IBOutlet weak var averageExchangeRate: UILabel!
-    
+    @IBOutlet weak var baseCurranceValue: UILabel!
+    var staticRate = 0.79
+    var rateText:String = ""
     
     
     // MARK: - View lifecycle
@@ -28,7 +30,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         setStyleFor(view: currency!)
         setStyleFor(view: exchangeRate!)
         setStyleFor(view: expenses!)
-       
+        rate.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +84,47 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     }
     
     // MARK: input validation and formatting
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+
+        if (isBackSpace == -92) {
+            if rateText.characters.count == 0{
+                return false
+            }
+            rateText.remove(at: rateText.index(before: rateText.endIndex))
+            rate.text = formatCurrency(value: rateText)
+            baseCurranceValue.text = formatCurrency(value: String(Double(rateText)! * staticRate))
+            return false
+        }
+
+        switch string {
+            case "0","1","2","3","4","5","6","7","8","9",".":
+                if string == "." && rateText.contains(".") {
+                    return false
+                }
+            rateText += string
+            print(rateText)
+            print(rate.text!)
+            rate.text = formatCurrency(value: rateText)
+            baseCurranceValue.text = String(Double(rateText)! * staticRate)
+            return false
+            default:
+                return false
+            }
+        }
+
+    func formatCurrency(value: String) ->String {
+        let doubleValue = Double(value) ?? 0.0
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = (value.contains(".00")) ? 0 : 2
+        formatter.maximumFractionDigits = 2
+        formatter.currencySymbol = ""
+        formatter.numberStyle = .currency
+        return formatter.string(from: NSNumber(value: doubleValue)) ?? "\(doubleValue)"
+    }
+
     
     
     // MARK: - UI
