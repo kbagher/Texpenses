@@ -68,10 +68,15 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         let keyboardFrameEndRect: CGRect? = keyboardFrameEnd?.cgRectValue
         print( exchangeRate!.frame.origin.y + rate.frame.origin.y )
         
-        if exchangeRate!.frame.origin.y + rate.frame.origin.y + rate.frame.size.height + 10 > (keyboardFrameEndRect?.origin.y)! {
+        if exchangeRate!.frame.origin.y + exchangeRate!.frame.size.height + 10 > (keyboardFrameEndRect?.origin.y)! {
             print("iff")
-            self.view.frame.origin.y = -(self.exchangeRate!.frame.origin.y + self.rate.frame.origin.y + self.rate.frame.size.height - (keyboardFrameEndRect?.origin.y)!) - 30.0
+            self.view.frame.origin.y = -(self.exchangeRate!.frame.origin.y + exchangeRate!.frame.size.height - (keyboardFrameEndRect?.origin.y)!) - 30.0
         }
+        
+//        if exchangeRate!.frame.origin.y + rate.frame.origin.y + rate.frame.size.height + 10 > (keyboardFrameEndRect?.origin.y)! {
+//            print("iff")
+//            self.view.frame.origin.y = -(self.exchangeRate!.frame.origin.y + self.rate.frame.origin.y + self.rate.frame.size.height - (keyboardFrameEndRect?.origin.y)!) - 30.0
+//        }
     }
     
     func keyboardWillHide(notification: NSNotification){
