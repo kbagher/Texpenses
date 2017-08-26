@@ -80,7 +80,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     }
     
     func keyboardWillHide(notification: NSNotification){
-        print("will hide")
         self.view.frame.origin.y = 0
     }
     

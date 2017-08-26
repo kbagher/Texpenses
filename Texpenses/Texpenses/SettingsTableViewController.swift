@@ -11,6 +11,9 @@ import MessageUI
 
 class SettingsTableViewController: UITableViewController,MFMailComposeViewControllerDelegate {
 
+    
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +29,12 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userBaseCurrency:UILabel = tableView.cellForRow(at: IndexPath(item: 0, section: 0))?.viewWithTag(200) as! UILabel
+        userBaseCurrency.text = UserSettings.sharedInstance.getBaseCurrency()?.currency
+    }
+    
 
     // MARK: - Table view data source
 
@@ -42,42 +51,6 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         default:
             return 2
         }
-    }
-    
-    func shareApp() {
-        
-        let txt = "Best app to track your expenses while travelling 😍"
-        let url = NSURL(string: "https://itunes.apple.com/au/app/%D8%B4%D9%88%D8%A7%D8%B1%D8%B9-%D8%AC%D8%AF%D8%A9/id1031487168?mt=8")
-        
-        let shareContent = [ txt,url!] as [Any]
-        let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    func sendEmail(){
-        if !MFMailComposeViewController.canSendMail() {
-            let alert = UIAlertController(title: "Ooops! 😮", message: "Please make sure you have setup at least one email account in your device", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        let mail = MFMailComposeViewController()
-        
-        mail.mailComposeDelegate = self
-        
-        mail.setToRecipients(["s3608985@student.rmit.edu.au","s3613654@student.rmit.edu.au"])
-        mail.setSubject("Hi Texpenses Team")
-
-        self.present(mail, animated: true, completion: nil)
-
-    }
-
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
     }
 
     
@@ -96,60 +69,42 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    // MARK: - Other functions
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func shareApp() {
+        
+        let txt = "Best app to track your expenses while travelling 😍"
+        let url = NSURL(string: "https://itunes.apple.com/au/app/%D8%B4%D9%88%D8%A7%D8%B1%D8%B9-%D8%AC%D8%AF%D8%A9/id1031487168?mt=8")
+        
+        let shareContent = [ txt,url!] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func sendEmail(){
+        if !MFMailComposeViewController.canSendMail() {
+            let alert = UIAlertController(title: "Ooops! 😮", message: "Please make sure you have setup at least one email account in your device", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        let mail = MFMailComposeViewController()
+        
+        mail.mailComposeDelegate = self
+        
+        mail.setToRecipients(["s3608985@student.rmit.edu.au","s3613654@student.rmit.edu.au"])
+        mail.setSubject("Hi Texpenses Team")
+        
+        self.present(mail, animated: true, completion: nil)
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

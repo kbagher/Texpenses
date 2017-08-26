@@ -10,9 +10,9 @@ import UIKit
 
 class CurrenciesTableViewController: UITableViewController {
 
-    let currencies = Currency.init().getDummyData()
+    let currencies = Currency.init().getAvailableCurrencies()
     
-    var selectedCell = 1
+    var oldSelectedCell = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,9 @@ class CurrenciesTableViewController: UITableViewController {
         
         currency.text = "\(currencies[indexPath.item].countryName) (\(currencies[indexPath.item].currency))"
         
-        if indexPath.item == selectedCell {
+        if currencies[indexPath.item].currency == UserSettings.sharedInstance.getBaseCurrency()?.currency {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            oldSelectedCell = indexPath.item
         }
         else{
             cell.accessoryType = UITableViewCellAccessoryType.none
@@ -62,8 +63,10 @@ class CurrenciesTableViewController: UITableViewController {
  
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: IndexPath(row: selectedCell, section: 0))?.accessoryType=UITableViewCellAccessoryType.none
-        selectedCell = indexPath.item
+        tableView.cellForRow(at: IndexPath(row: oldSelectedCell, section: 0))?.accessoryType=UITableViewCellAccessoryType.none
+        oldSelectedCell = indexPath.item
+        
+        UserSettings.sharedInstance.replaceBaseCurrencyWith(currency: currencies[indexPath.item])
         tableView.cellForRow(at: indexPath)?.accessoryType=UITableViewCellAccessoryType.checkmark
         tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.popToRootViewController(animated: true)

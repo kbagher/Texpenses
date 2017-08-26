@@ -2,7 +2,7 @@
 //  TexpensesUITests.swift
 //  TexpensesUITests
 //
-//  Created by Kassem Bagher on 22/8/17.
+//  Created by Kassem Bagher on 26/8/17.
 //  Copyright © 2017 Kassem Bagher. All rights reserved.
 //
 
@@ -29,6 +29,12 @@ class TexpensesUITests: XCTestCase {
     }
     
     func testExample() {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testExample2() {
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
