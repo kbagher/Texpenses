@@ -658,7 +658,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cD-9L-a7F">
                                 <rect key="frame" x="13" y="347.33333333333331" width="388" height="120"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="1" borderStyle="line" placeholder="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-yb-idB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JzA-yb-idB">
                                         <rect key="frame" x="20" y="20" width="143" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="423-og-Z46"/>
@@ -2146,6 +2146,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="x7X-tP-LLc"/>
-        <segue reference="CUn-Hr-Dwt"/>
+        <segue reference="yJX-7C-53z"/>
     </inferredMetricsTieBreakers>
 </document>

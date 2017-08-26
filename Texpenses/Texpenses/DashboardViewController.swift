@@ -19,8 +19,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var rate: UITextField!
     @IBOutlet weak var averageExchangeRate: UILabel!
     @IBOutlet weak var baseCurranceValue: UILabel!
-    var staticRate = 0.79
-    var rateText:String = ""
+    
     
     
     // MARK: - View lifecycle
@@ -88,46 +87,90 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     }
     
     // MARK: input validation and formatting
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
+        
         let  char = string.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
-
+        
         if (isBackSpace == -92) {
-            if rateText.characters.count == 0{
+            if rate.text?.characters.count == 0{
                 return false
             }
-            rateText.remove(at: rateText.index(before: rateText.endIndex))
-            rate.text = formatCurrency(value: rateText)
-            baseCurranceValue.text = formatCurrency(value: String(Double(rateText)! * staticRate))
+            rate.text?.remove(at: (rate.text?.index(before: (rate.text?.endIndex)!))!)
+            
+            // recalculate the value
+            let currency = Currency.init().getCurrencyWith(symbol: "AUD")
+            let amount:Double = Double(rate.text!)!
+            let val = Currency.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
+            baseCurranceValue.text = String(val)
             return false
         }
-
+        
         switch string {
-            case "0","1","2","3","4","5","6","7","8","9",".":
-                if string == "." && rateText.contains(".") {
-                    return false
-                }
-            rateText += string
-            print(rateText)
-            print(rate.text!)
-            rate.text = formatCurrency(value: rateText)
-            baseCurranceValue.text = String(Double(rateText)! * staticRate)
-            return false
-            default:
+        case "0","1","2","3","4","5","6","7","8","9",".":
+            if string == "." && (rate.text?.contains("."))! {
                 return false
             }
+            rate.text? += string
+            let currency = Currency.init().getCurrencyWith(symbol: "AUD")
+            let amount:Double = Double(rate.text!)!
+            let val = Currency.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
+            baseCurranceValue.text = String(val)
+            
+//            rateText += string
+//            rate.text = formatCurrency(value: rateText)
+//            baseCurranceValue.text = String(Double(rateText)! * staticRate)
+            return false
+        default:
+            return false
         }
-
-    func formatCurrency(value: String) ->String {
-        let doubleValue = Double(value) ?? 0.0
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = (value.contains(".00")) ? 0 : 2
-        formatter.maximumFractionDigits = 2
-        formatter.currencySymbol = ""
-        formatter.numberStyle = .currency
-        return formatter.string(from: NSNumber(value: doubleValue)) ?? "\(doubleValue)"
     }
+
+    //     WILL BE USED LATER
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//        let  char = string.cString(using: String.Encoding.utf8)!
+//        let isBackSpace = strcmp(char, "\\b")
+//
+//        if (isBackSpace == -92) {
+//            if rateText.characters.count == 0{
+//                return false
+//            }
+//            rateText.remove(at: rateText.index(before: rateText.endIndex))
+//            rate.text = formatCurrency(value: rateText)
+//            baseCurranceValue.text = formatCurrency(value: String(Double(rateText)! * staticRate))
+//            return false
+//        }
+//
+//        switch string {
+//            case "0","1","2","3","4","5","6","7","8","9",".":
+//                if string == "." && rateText.contains(".") {
+//                    return false
+//                }
+//            rateText += string
+//            print(rateText)
+//            print(rate.text!)
+//            rate.text = formatCurrency(value: rateText)
+//            baseCurranceValue.text = String(Double(rateText)! * staticRate)
+//            return false
+//            default:
+//                return false
+//            }
+//        }
+
+    
+    // will be used later
+//    func formatCurrency(value: String) ->String {
+//        let doubleValue = Double(value) ?? 0.0
+//        let formatter = NumberFormatter()
+//        formatter.minimumFractionDigits = (value.contains(".00")) ? 0 : 2
+//        formatter.maximumFractionDigits = 2
+//        formatter.currencySymbol = ""
+//        formatter.numberStyle = .currency
+//        return formatter.string(from: NSNumber(value: doubleValue)) ?? "\(doubleValue)"
+//    }
 
     
     
@@ -141,14 +184,5 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         v.layer.borderColor = UIColor.lightGray.cgColor
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

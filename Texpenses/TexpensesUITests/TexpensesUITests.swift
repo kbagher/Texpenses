@@ -28,15 +28,50 @@ class TexpensesUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // check if changing currency is reflected in the app settings view
+    func testSettingsChanggeCurrency() {
+        XCUIDevice.shared().orientation = .portrait
+        
+        let app = XCUIApplication()
+        app.tabBars.buttons["Settings"].tap()
+        
+        let t = app.tables
+        t.staticTexts["USD"].tap()
+        t.staticTexts["Saudi Riyal (SAR)"].tap()
+        XCTAssert(t.staticTexts["SAR"].exists)
     }
     
-    func testExample2() {
+    // check if the transaction details is changed related to the tapped transaction
+    func testTransactionDetails() {
+        XCUIDevice.shared().orientation = .portrait
         
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let app = XCUIApplication()
+        app.tabBars.buttons["Transactions"].tap()
+        app.tables.staticTexts["Chips Snacks"].tap()
+        XCTAssert(app.tables.staticTexts["Chips Snacks"].exists)
+    }
+    
+    // Check if exchage rate is calculated correctly
+    func testDashboardExchangeRate() {
+        XCUIDevice.shared().orientation = .portrait
+        let textField = XCUIApplication().textFields["1"]
+        textField.tap()
+        textField.typeText("100")
+        XCTAssert(XCUIApplication().staticTexts["79.0"].exists)
+    }
+    
+    /* 
+     check if the currency textfield and result label
+     are both visible and not hidden by the keyboard
+     */
+    func testDashboardTextFieldsVisibility() {
+        XCUIDevice.shared().orientation = .portrait
+        let textField = XCUIApplication().textFields["1"]
+        textField.tap()
+        XCTAssert(textField.isHittable)
+        
+        let rate = XCUIApplication().staticTexts["0.79"]
+        XCTAssert(rate.isHittable)
     }
     
 }
