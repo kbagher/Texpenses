@@ -13,17 +13,24 @@ import CoreLocation
 class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
 
     @IBOutlet var currency: UILabel!
+    @IBOutlet var expenseTitle: UILabel!
     @IBOutlet var expense: UITextField!
     @IBOutlet var map: MKMapView!
     var locationManager: CLLocationManager!
 
     
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         expense.becomeFirstResponder()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(AddExpenseViewController.setTitle(sender:)))
+        expenseTitle.addGestureRecognizer(tap)
+
+        
         
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -36,18 +43,59 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        registerNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterNotifications()
+    }
+
+    
     override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        print("ACTION")
         return false
     }
 
+    @IBAction func saveExpense(_ sender: AnyObject) {
+        expense.endEditing(true)
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func closeView(_sender : AnyObject){
         expense.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
 
+    
+    // MARK: - Other
+    func setTitle(sender:UITapGestureRecognizer) {
+        let alert = UIAlertController(title: nil, message: "Enter expense title", preferredStyle: .alert)
+        
+        let confirm = UIAlertAction(title: "Ok", style: .default) { (_) in
+            if let field = alert.textFields?[0] {
+                self.expenseTitle.text = field.text
+            } else {
+                // user did not fill field
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Title"
+        }
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 
+
+    // MARK: - Location Manager
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
         
@@ -70,15 +118,43 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Keyboard
+    // MARK: Keyboard visibility
+    
+    func registerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
     }
-    */
+    
+    func unregisterNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification){
+        let keyboardInfo  = notification.userInfo as NSDictionary?
+        let keyboardFrameEnd: NSValue? = (keyboardInfo?.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue)
+        let keyboardFrameEndRect: CGRect? = keyboardFrameEnd?.cgRectValue
+        
+        if expense!.frame.origin.y + expense!.frame.size.height + 10 > (keyboardFrameEndRect?.origin.y)! {
+            
+            self.view.frame.origin.y = -(self.expense!.frame.origin.y + expense!.frame.size.height - (keyboardFrameEndRect?.origin.y)!) - 30.0
+        }
+        
+    }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        expense.invalidateIntrinsicContentSize()
+//        expense.layoutIfNeeded()
+//        return true
+//    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        expense.resignFirstResponder()
+    }
+    
+    func keyboardWillHide(notification: NSNotification){
+        self.view.frame.origin.y = 0
+    }
 
 }
