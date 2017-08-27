@@ -40,21 +40,6 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
     }
     
     
-    func updateFooter(){
-        if let v = tableView.tableFooterView?.viewWithTag(100) {
-            let f = v as! UILabel
-            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-            f.text = "Version " + version
-        }
-    }
-
-    func updateCurrency(){
-        if let c = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) {
-            let userBaseCurrency:UILabel = c.viewWithTag(200) as! UILabel
-            userBaseCurrency.text = UserSettings.sharedInstance.getBaseCurrency()?.currency
-        }
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,7 +65,7 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         default:
             switch indexPath.item {
             case 0:
-                sendEmail()
+                contactUS()
             default:
                 shareApp()
             }
@@ -100,6 +85,33 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
         self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func contactUS(){
+        let alert = UIAlertController(title: "Contact us", message: "How would you like to contact us? ", preferredStyle: UIAlertControllerStyle.actionSheet);
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil));
+        //event handler with closure
+        alert.addAction(UIAlertAction(title: "Email", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction) in
+            self.sendEmail()
+        }));
+        alert.addAction(UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction) in
+            self.openTwitter()
+        }));
+        present(alert, animated: true, completion: nil);
+
+    }
+    
+    
+    func openTwitter(){
+        let twitterApp = URL(string: "twitter://user?screen_name=kassem_bagher")!
+        let twitterWeb = URL(string: "https://twitter.com/kassem_bagher")!
+        
+        if UIApplication.shared.canOpenURL(twitterApp) {
+            UIApplication.shared.open(twitterApp, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(twitterWeb, options: [:], completionHandler: nil)
+        }
+
     }
     
     func sendEmail(){
@@ -124,6 +136,21 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func updateFooter(){
+        if let v = tableView.tableFooterView?.viewWithTag(100) {
+            let f = v as! UILabel
+            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+            f.text = "Version " + version
+        }
+    }
+    
+    func updateCurrency(){
+        if let c = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) {
+            let userBaseCurrency:UILabel = c.viewWithTag(200) as! UILabel
+            userBaseCurrency.text = UserSettings.sharedInstance.getBaseCurrency()?.currency
+        }
     }
     
 }
