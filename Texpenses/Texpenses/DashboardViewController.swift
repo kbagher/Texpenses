@@ -29,6 +29,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         setStyleFor(view: currency!)
         setStyleFor(view: exchangeRate!)
         setStyleFor(view: expenses!)
+        setTextfieldStyleFor(textField: rate!)
         rate.delegate = self
     }
     
@@ -174,8 +175,17 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     
     
     // MARK: - UI
+    
+    func setTextfieldStyleFor(textField tf:UIView) {
+        tf.layer.masksToBounds = true
+        tf.layer.borderWidth = 1
+        tf.layer.cornerRadius = 7
+        tf.layer.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:1.0).cgColor
+        tf.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
     func setStyleFor(view v:UIView) {
-        // Cell desing (border and background color
+        // Cell desing (border and background color)
         v.layer.masksToBounds = true
         v.layer.borderWidth = 1
         v.layer.cornerRadius = 12
