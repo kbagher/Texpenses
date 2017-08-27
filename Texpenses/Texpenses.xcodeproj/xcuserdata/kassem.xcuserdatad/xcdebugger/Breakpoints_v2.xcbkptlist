@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Texpenses/SettingsTableViewController.swift"
-            timestampString = "525509057.175636"
+            timestampString = "525510010.822995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "openTwitter()"
             landmarkType = "7">
          </BreakpointContent>

@@ -97,6 +97,11 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         alert.addAction(UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction) in
             self.openTwitter()
         }));
+        
+        let pop = alert.popoverPresentationController
+        pop?.sourceView = tableView.cellForRow(at: IndexPath(item: 0, section: 1))
+        pop?.permittedArrowDirections = UIPopoverArrowDirection.up
+        
         present(alert, animated: true, completion: nil);
 
     }
