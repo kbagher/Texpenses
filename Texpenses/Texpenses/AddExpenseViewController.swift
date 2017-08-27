@@ -118,36 +118,28 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Keyboard
-    // MARK: Keyboard visibility
+    // MARK: - Keyboard visibility
     
     func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
     }
     
     func unregisterNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
     }
     
     func keyboardWillShow(notification: NSNotification){
-        let keyboardInfo  = notification.userInfo as NSDictionary?
-        let keyboardFrameEnd: NSValue? = (keyboardInfo?.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue)
-        let keyboardFrameEndRect: CGRect? = keyboardFrameEnd?.cgRectValue
+        let keyboard  = notification.userInfo as NSDictionary?
+        let keyboardFrame: CGRect? = (keyboard?.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue)?.cgRectValue
         
-        if expense!.frame.origin.y + expense!.frame.size.height + 10 > (keyboardFrameEndRect?.origin.y)! {
+        if expense!.frame.origin.y + expense!.frame.size.height + 10 > (keyboardFrame?.origin.y)! {
             
-            self.view.frame.origin.y = -(self.expense!.frame.origin.y + expense!.frame.size.height - (keyboardFrameEndRect?.origin.y)!) - 30.0
+            self.view.frame.origin.y = -(self.expense!.frame.origin.y + expense!.frame.size.height - (keyboardFrame?.origin.y)!) - 30.0
         }
         
     }
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        expense.invalidateIntrinsicContentSize()
-//        expense.layoutIfNeeded()
-//        return true
-//    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         expense.resignFirstResponder()

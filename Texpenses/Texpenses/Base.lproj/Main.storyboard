@@ -16,7 +16,7 @@
         <scene sceneID="iZk-P9-Dm0">
             <objects>
                 <navigationController id="MTN-OE-Dtr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" id="LdP-4y-R9w"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="dashboard" id="LdP-4y-R9w"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kpk-Pp-fyU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1608,7 +1608,7 @@
         <scene sceneID="mKA-Kz-a3R">
             <objects>
                 <navigationController id="Wms-Ss-DXh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Summary" id="iXJ-wr-MVF"/>
+                    <tabBarItem key="tabBarItem" title="Summary" image="summary" id="iXJ-wr-MVF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZIT-Ox-lZX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1657,7 +1657,7 @@
         <scene sceneID="T8H-TV-dak">
             <objects>
                 <splitViewController id="PQh-uU-YJS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Transactions" id="a5c-P9-opo"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="transactions" id="a5c-P9-opo"/>
                     <connections>
                         <segue destination="Mzq-Ox-1he" kind="relationship" relationship="masterViewController" id="g15-Oz-ULB"/>
                         <segue destination="ncA-oq-Xvx" kind="relationship" relationship="detailViewController" id="NbX-QZ-6Ah"/>
@@ -2148,7 +2148,7 @@
         <scene sceneID="aiQ-1h-eGp">
             <objects>
                 <navigationController id="UXs-CI-Y8V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="OoZ-wS-nDp"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="OoZ-wS-nDp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rab-Ev-gwC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2163,10 +2163,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dashboard" width="30" height="30"/>
         <image name="location_pin" width="40" height="40"/>
+        <image name="settings" width="30" height="30"/>
+        <image name="summary" width="30" height="30"/>
+        <image name="transactions" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yJX-7C-53z"/>
-        <segue reference="x7X-tP-LLc"/>
+        <segue reference="CUn-Hr-Dwt"/>
+        <segue reference="NbX-QZ-6Ah"/>
     </inferredMetricsTieBreakers>
 </document>

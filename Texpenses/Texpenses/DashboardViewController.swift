@@ -97,7 +97,10 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
             
             // recalculate the value
             let currency = Currency.init().getCurrencyWith(symbol: "AUD")
-            let amount:Double = Double(rate.text!)!
+            var amount:Double = 1
+            if !(rate.text?.isEmpty)!{
+             amount = Double(rate.text!)!
+            }
             let val = Currency.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
             baseCurranceValue.text = String(val)
             return false
