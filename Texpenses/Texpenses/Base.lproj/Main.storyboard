@@ -1971,6 +1971,23 @@
                                 <constraint firstAttribute="trailing" secondItem="lDu-Ox-9gG" secondAttribute="trailing" constant="8" id="pWu-hO-xXI"/>
                             </constraints>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Dno-vh-TWG">
+                            <rect key="frame" x="0.0" y="224" width="414" height="73"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wq9-0R-oQr">
+                                    <rect key="frame" x="172.33333333333334" y="28.333333333333336" width="70.333333333333314" height="17.000000000000007"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.57496929939999997" green="0.57496929939999997" blue="0.57496929939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.89829430690000001" green="0.90775003639999996" blue="0.90775003639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="wq9-0R-oQr" firstAttribute="centerY" secondItem="Dno-vh-TWG" secondAttribute="centerY" id="2tK-ha-UbF"/>
+                                <constraint firstItem="wq9-0R-oQr" firstAttribute="centerX" secondItem="Dno-vh-TWG" secondAttribute="centerX" id="X3f-0E-aC2"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="" id="Yii-gE-rrD">
                                 <cells>
@@ -2093,7 +2110,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceA-d0-TpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="2022"/>
+            <point key="canvasLocation" x="1349.2753623188407" y="2021.7391304347827"/>
         </scene>
         <!--Currencies Table View Controller-->
         <scene sceneID="l4J-N4-Msy">

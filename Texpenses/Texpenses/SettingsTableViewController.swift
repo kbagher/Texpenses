@@ -22,7 +22,7 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        tableView.tableFooterView = UIView()
+//        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,12 +30,31 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        let userBaseCurrency:UILabel = tableView.cellForRow(at: IndexPath(item: 0, section: 0))?.viewWithTag(200) as! UILabel
-        userBaseCurrency.text = UserSettings.sharedInstance.getBaseCurrency()?.currency
+    override func viewDidAppear(_ animated: Bool) {
+        updateCurrency()
+        updateFooter()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateCurrency()
+    }
+    
+    
+    func updateFooter(){
+        if let v = tableView.tableFooterView?.viewWithTag(100) {
+            let f = v as! UILabel
+            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+            f.text = "Version " + version
+        }
+    }
 
+    func updateCurrency(){
+        if let c = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) {
+            let userBaseCurrency:UILabel = c.viewWithTag(200) as! UILabel
+            userBaseCurrency.text = UserSettings.sharedInstance.getBaseCurrency()?.currency
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
