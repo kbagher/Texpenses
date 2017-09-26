@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1350836A1F515C2800F438F7 /* TexpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083691F515C2800F438F7 /* TexpensesUITests.swift */; };
 		135083721F515DE300F438F7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083711F515DE300F438F7 /* UserSettings.swift */; };
+		1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */; };
 		136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */; };
 		136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */; };
 		136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */; };
@@ -41,6 +42,7 @@
 		135083691F515C2800F438F7 /* TexpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexpensesUITests.swift; sourceTree = "<group>"; };
 		1350836B1F515C2800F438F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		135083711F515DE300F438F7 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelDatabase.xcdatamodel; sourceTree = "<group>"; };
 		136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewController.swift; sourceTree = "<group>"; };
 		136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		135083741F515F1900F438F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
 				136D0BB11F4E55C500DEEB3B /* Currency.swift */,
 				135083711F515DE300F438F7 /* UserSettings.swift */,
@@ -289,6 +292,7 @@
 				136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */,
 				136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */,
 				136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */,
+				1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
 				136D0BB21F4E55C500DEEB3B /* Currency.swift in Sources */,
 				136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */,
@@ -503,6 +507,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */,
+			);
+			currentVersion = 1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */;
+			path = TravelDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 13C46DB51F4BA39A004FD91F /* Project object */;
 }
