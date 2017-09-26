@@ -10,6 +10,13 @@
 		1350836A1F515C2800F438F7 /* TexpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083691F515C2800F438F7 /* TexpensesUITests.swift */; };
 		135083721F515DE300F438F7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083711F515DE300F438F7 /* UserSettings.swift */; };
 		1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */; };
+		135653401F7A2A28001DCD35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356533F1F7A2A28001DCD35 /* Model.swift */; };
+		135653471F7A2BD7001DCD35 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653431F7A2BD7001DCD35 /* Transaction+CoreDataClass.swift */; };
+		135653481F7A2BD7001DCD35 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653441F7A2BD7001DCD35 /* Transaction+CoreDataProperties.swift */; };
+		135653591F7A3614001DCD35 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653571F7A3614001DCD35 /* Trip+CoreDataClass.swift */; };
+		1356535A1F7A3614001DCD35 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653581F7A3614001DCD35 /* Trip+CoreDataProperties.swift */; };
+		135653611F7A4A53001DCD35 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356535F1F7A4A53001DCD35 /* Currency+CoreDataClass.swift */; };
+		135653621F7A4A53001DCD35 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653601F7A4A53001DCD35 /* Currency+CoreDataProperties.swift */; };
 		136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */; };
 		136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */; };
 		136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */; };
@@ -17,8 +24,8 @@
 		136D0BAC1F4D793F00DEEB3B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136D0BAB1F4D793F00DEEB3B /* MapKit.framework */; };
 		136D0BAE1F4DB86F00DEEB3B /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */; };
 		136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BAF1F4E483B00DEEB3B /* Summary.swift */; };
-		136D0BB21F4E55C500DEEB3B /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB11F4E55C500DEEB3B /* Currency.swift */; };
-		136D0BB41F4E579000DEEB3B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB31F4E579000DEEB3B /* Transaction.swift */; };
+		136D0BB21F4E55C500DEEB3B /* Currency_OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB11F4E55C500DEEB3B /* Currency_OLD.swift */; };
+		136D0BB41F4E579000DEEB3B /* Transaction_OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB31F4E579000DEEB3B /* Transaction_OLD.swift */; };
 		136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BE11F4EE1B400DEEB3B /* DashboardViewController.swift */; };
 		13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DC01F4BA39A004FD91F /* AppDelegate.swift */; };
 		13C46DC61F4BA39A004FD91F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC41F4BA39A004FD91F /* Main.storyboard */; };
@@ -43,6 +50,13 @@
 		1350836B1F515C2800F438F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		135083711F515DE300F438F7 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelDatabase.xcdatamodel; sourceTree = "<group>"; };
+		1356533F1F7A2A28001DCD35 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		135653431F7A2BD7001DCD35 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataClass.swift"; path = "../Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		135653441F7A2BD7001DCD35 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataProperties.swift"; path = "../Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		135653571F7A3614001DCD35 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataClass.swift"; path = "../Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		135653581F7A3614001DCD35 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataProperties.swift"; path = "../Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1356535F1F7A4A53001DCD35 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataClass.swift"; path = "../Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		135653601F7A4A53001DCD35 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataProperties.swift"; path = "../Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewController.swift; sourceTree = "<group>"; };
 		136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -50,8 +64,8 @@
 		136D0BAB1F4D793F00DEEB3B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		136D0BAF1F4E483B00DEEB3B /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
-		136D0BB11F4E55C500DEEB3B /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		136D0BB31F4E579000DEEB3B /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		136D0BB11F4E55C500DEEB3B /* Currency_OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency_OLD.swift; sourceTree = "<group>"; };
+		136D0BB31F4E579000DEEB3B /* Transaction_OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction_OLD.swift; sourceTree = "<group>"; };
 		136D0BE11F4EE1B400DEEB3B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		13C46DBD1F4BA39A004FD91F /* Texpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Texpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C46DC01F4BA39A004FD91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,11 +121,18 @@
 		135083741F515F1900F438F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1356535F1F7A4A53001DCD35 /* Currency+CoreDataClass.swift */,
+				135653601F7A4A53001DCD35 /* Currency+CoreDataProperties.swift */,
+				135653571F7A3614001DCD35 /* Trip+CoreDataClass.swift */,
+				135653581F7A3614001DCD35 /* Trip+CoreDataProperties.swift */,
+				135653431F7A2BD7001DCD35 /* Transaction+CoreDataClass.swift */,
+				135653441F7A2BD7001DCD35 /* Transaction+CoreDataProperties.swift */,
 				1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
-				136D0BB11F4E55C500DEEB3B /* Currency.swift */,
+				136D0BB11F4E55C500DEEB3B /* Currency_OLD.swift */,
 				135083711F515DE300F438F7 /* UserSettings.swift */,
-				136D0BB31F4E579000DEEB3B /* Transaction.swift */,
+				136D0BB31F4E579000DEEB3B /* Transaction_OLD.swift */,
+				1356533F1F7A2A28001DCD35 /* Model.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -284,17 +305,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */,
+				135653611F7A4A53001DCD35 /* Currency+CoreDataClass.swift in Sources */,
 				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
-				136D0BB41F4E579000DEEB3B /* Transaction.swift in Sources */,
+				136D0BB41F4E579000DEEB3B /* Transaction_OLD.swift in Sources */,
 				136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */,
+				135653471F7A2BD7001DCD35 /* Transaction+CoreDataClass.swift in Sources */,
 				135083721F515DE300F438F7 /* UserSettings.swift in Sources */,
 				136D0BAE1F4DB86F00DEEB3B /* AddExpenseViewController.swift in Sources */,
+				135653401F7A2A28001DCD35 /* Model.swift in Sources */,
+				135653591F7A3614001DCD35 /* Trip+CoreDataClass.swift in Sources */,
+				135653621F7A4A53001DCD35 /* Currency+CoreDataProperties.swift in Sources */,
 				136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */,
 				136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */,
 				136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */,
 				1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */,
+				135653481F7A2BD7001DCD35 /* Transaction+CoreDataProperties.swift in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
-				136D0BB21F4E55C500DEEB3B /* Currency.swift in Sources */,
+				136D0BB21F4E55C500DEEB3B /* Currency_OLD.swift in Sources */,
+				1356535A1F7A3614001DCD35 /* Trip+CoreDataProperties.swift in Sources */,
 				136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

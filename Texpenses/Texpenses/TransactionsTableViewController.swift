@@ -10,7 +10,7 @@ import UIKit
 
 class TransactionsTableViewController: UITableViewController,UISplitViewControllerDelegate {
 
-    let transactions = Transaction.init().getDummyData()
+    let transactions = Transaction_OLD.init().getDummyData()
     
     override func viewDidLoad() {
         super.viewDidLoad()

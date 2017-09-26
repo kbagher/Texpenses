@@ -9,20 +9,20 @@
 import Foundation
 class UserSettings: NSObject {
     
-    var currency:Currency = Currency()
+    var currency:Currency_OLD = Currency_OLD()
     
     static let sharedInstance = UserSettings()
     
     
     override init() {}
     
-    func replaceBaseCurrencyWith(currency c:Currency) {
+    func replaceBaseCurrencyWith(currency c:Currency_OLD) {
         currency = c
     }
     
-    func getBaseCurrency() -> Currency? {
+    func getBaseCurrency() -> Currency_OLD? {
         if currency.countryName.isEmpty {
-            if let c = Currency.init().getCurrencyWith(symbol: "USD") {
+            if let c = Currency_OLD.init().getCurrencyWith(symbol: "USD") {
                 currency = c
                 return currency
             }

@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Currency" representedClassName="Currency" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip" inverseName="currency" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <entity name="Preferences" representedClassName="Preferences" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="baseCurrency" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Transaction" representedClassName="Transaction" parentEntity="Trip" syncable="YES"/>
+    <entity name="Transaction" representedClassName="Transaction" parentEntity="Trip" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="transactions" inverseEntity="Trip" syncable="YES"/>
+    </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Transaction" inverseName="trip" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Currency" positionX="-18" positionY="36" width="128" height="105"/>
         <element name="Preferences" positionX="-54" positionY="-9" width="128" height="60"/>
-        <element name="Trip" positionX="-36" positionY="9" width="128" height="75"/>
-        <element name="Currency" positionX="-18" positionY="36" width="128" height="60"/>
+        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Trip" positionX="-36" positionY="9" width="128" height="135"/>
     </elements>
 </model>

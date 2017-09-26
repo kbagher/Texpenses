@@ -30,6 +30,16 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         setStyleFor(view: exchangeRate!)
         setStyleFor(view: expenses!)
         setTextfieldStyleFor(textField: rate!)
+        
+        // TEST
+        
+        let m: Model = Model.sharedInstance
+        let x = m.getTrips()!
+        print(x.count);
+        
+        //
+        
+        
         rate.delegate = self
     }
     
@@ -97,12 +107,12 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
             rate.text?.remove(at: (rate.text?.index(before: (rate.text?.endIndex)!))!)
             
             // recalculate the value
-            let currency = Currency.init().getCurrencyWith(symbol: "AUD")
+            let currency = Currency_OLD.init().getCurrencyWith(symbol: "AUD")
             var amount:Double = 1
             if !(rate.text?.isEmpty)!{
              amount = Double(rate.text!)!
             }
-            let val = Currency.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
+            let val = Currency_OLD.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
             baseCurranceValue.text = String(val)
             return false
         }
@@ -113,9 +123,9 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
                 return false
             }
             rate.text? += string
-            let currency = Currency.init().getCurrencyWith(symbol: "AUD")
+            let currency = Currency_OLD.init().getCurrencyWith(symbol: "AUD")
             let amount:Double = Double(rate.text!)!
-            let val = Currency.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
+            let val = Currency_OLD.init().calculateExchangeRateFromBaseWith(currency: currency!, amount: amount)
             baseCurranceValue.text = String(val)
             
 //            rateText += string

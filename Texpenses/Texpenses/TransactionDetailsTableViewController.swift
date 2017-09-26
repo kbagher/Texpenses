@@ -10,7 +10,7 @@ import UIKit
 
 class TransactionDetailsTableViewController: UITableViewController {
     
-    var transaction: Transaction? {
+    var transaction: Transaction_OLD? {
         didSet {
             // Update the view.
             configureView()

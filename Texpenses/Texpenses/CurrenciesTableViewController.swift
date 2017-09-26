@@ -10,7 +10,7 @@ import UIKit
 
 class CurrenciesTableViewController: UITableViewController {
 
-    let currencies = Currency.init().getAvailableCurrencies()
+    let currencies = Currency_OLD.init().getAvailableCurrencies()
     
     var oldSelectedCell = 0
     
