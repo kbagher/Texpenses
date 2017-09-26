@@ -17,6 +17,7 @@
 		1356535A1F7A3614001DCD35 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653581F7A3614001DCD35 /* Trip+CoreDataProperties.swift */; };
 		135653611F7A4A53001DCD35 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356535F1F7A4A53001DCD35 /* Currency+CoreDataClass.swift */; };
 		135653621F7A4A53001DCD35 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653601F7A4A53001DCD35 /* Currency+CoreDataProperties.swift */; };
+		135653641F7A4C54001DCD35 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653631F7A4C54001DCD35 /* WebServices.swift */; };
 		136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */; };
 		136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */; };
 		136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */; };
@@ -57,6 +58,7 @@
 		135653581F7A3614001DCD35 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataProperties.swift"; path = "../Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1356535F1F7A4A53001DCD35 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataClass.swift"; path = "../Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
 		135653601F7A4A53001DCD35 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataProperties.swift"; path = "../Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		135653631F7A4C54001DCD35 /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
 		136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewController.swift; sourceTree = "<group>"; };
 		136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				1356535F1F7A4A53001DCD35 /* Currency+CoreDataClass.swift */,
 				135653601F7A4A53001DCD35 /* Currency+CoreDataProperties.swift */,
+				135653631F7A4C54001DCD35 /* WebServices.swift */,
 				135653571F7A3614001DCD35 /* Trip+CoreDataClass.swift */,
 				135653581F7A3614001DCD35 /* Trip+CoreDataProperties.swift */,
 				135653431F7A2BD7001DCD35 /* Transaction+CoreDataClass.swift */,
@@ -306,6 +309,7 @@
 			files = (
 				136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */,
 				135653611F7A4A53001DCD35 /* Currency+CoreDataClass.swift in Sources */,
+				135653641F7A4C54001DCD35 /* WebServices.swift in Sources */,
 				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
 				136D0BB41F4E579000DEEB3B /* Transaction_OLD.swift in Sources */,
 				136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */,

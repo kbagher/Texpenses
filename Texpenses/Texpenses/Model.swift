@@ -11,30 +11,76 @@ import UIKit
 import CoreData
 
 class Model {
-    
+
     static let sharedInstance = Model()
-    
+
     // Get a reference to your App Delegate
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+
     // Hold a reference to the managed context
     let managedContext: NSManagedObjectContext
-    
+
     private init()
     {
         managedContext = appDelegate.persistentContainer.viewContext
     }
 
-    // MARK: - Currency CRUD operations
+    // MARK: - Currency
+    func checkIsCurrencyExistsWith(symbol: String) -> Bool {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Currency")
+        fetchRequest.predicate = NSPredicate(format: "symbol == %@", symbol)
+        
+        var results: [NSManagedObject] = []
+        
+        do {
+            results = try managedContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        
+        return results.count > 0
+    }
+
+   
+    func deleteCurrency(withSymbol symbol:String) -> Bool  {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Currency")
+        fetchRequest.predicate = NSPredicate(format: "symbol == %@", symbol)
+        
+        var results = [Currency]()
+        
+        do {
+            results = try managedContext.fetch(fetchRequest) as! [Currency]
+            if results.count > 0 {
+                deleteCurrency(currency: results[0])
+                return true
+            }
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return false
+    }
+    
+    // MARK: CRUD operations
     func addCurrency(name:String,symbol:String,rate: Double) -> Bool {
+        if checkIsCurrencyExistsWith(symbol: symbol) {
+            return false;
+        }
+        
         let entity =  NSEntityDescription.entity(forEntityName: "Currency",in:managedContext)
         let currency = Currency(entity: entity!,insertInto:managedContext)
         currency.name = name
         currency.symbol = symbol
         currency.rate = rate
+        updateDatabase();
         return true
     }
-
+    
+    func deleteCurrency(currency: Currency){
+        managedContext.delete(currency)
+        updateDatabase()
+    }
     
     func getCurrencies() -> [Currency]?
     {
@@ -51,8 +97,9 @@ class Model {
         return nil;
     }
 
-    // MARK: - Trips CRUD operations
+    // MARK: - Trips
     
+    // MARK: CRUD operations
     // Add a new trip
     func addTrip(countryName:String,startDate:Date,currency:Currency) -> Bool {
         let entity =  NSEntityDescription.entity(forEntityName: "Trip",in:managedContext)

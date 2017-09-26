@@ -33,9 +33,16 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         
         // TEST
         
-        let m: Model = Model.sharedInstance
-        let x = m.getTrips()!
-        print(x.count);
+        
+        
+//        let m: Model = Model.sharedInstance
+//        m.addCurrency(name: "Saudi Riyal", symbol: "SAR", rate: 1.0)
+//        m.deleteCurrency(withSymbol: "AUD")
+//        let x = m.getCurrencies()!
+//        print(x.count);
+        let w:WebServices = WebServices.sharedInstance
+        w.getCurrencies()
+        
         
         //
         
