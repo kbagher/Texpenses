@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Texpenses/DashboardViewController.swift"
-            timestampString = "525432804.919316"
+            timestampString = "528178204.265856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Texpenses/DashboardViewController.swift"
-            timestampString = "528115772.11432"
+            timestampString = "528178204.265856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "DashboardViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Texpenses/DashboardViewController.swift"
-            timestampString = "528115772.11432"
+            timestampString = "528178204.265856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "textField(_:shouldChangeCharactersIn:replacementString:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Texpenses/DashboardViewController.swift"
-            timestampString = "528100705.267449"
+            timestampString = "528178204.265856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +106,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Texpenses/WebServices.swift"
-            timestampString = "528117195.193141"
+            timestampString = "528170753.536209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "getCurrencies()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Texpenses/LocationService.swift"
+            timestampString = "528178204.265856"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "getCountryWith(locaiton:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

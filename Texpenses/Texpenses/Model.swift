@@ -63,7 +63,7 @@ class Model {
     }
     
     // MARK: CRUD operations
-    func addCurrency(name:String,symbol:String,rate: Double) -> Bool {
+    func addCurrency(name:String,symbol:String) -> Bool {
         if checkIsCurrencyExistsWith(symbol: symbol) {
             return false;
         }
@@ -72,7 +72,6 @@ class Model {
         let currency = Currency(entity: entity!,insertInto:managedContext)
         currency.name = name
         currency.symbol = symbol
-        currency.rate = rate
         updateDatabase();
         return true
     }

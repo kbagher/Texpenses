@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
-class DashboardViewController: UIViewController,UITextFieldDelegate {
+class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesDelegate,LocationServiceDelegate{
+    
+
 
     @IBOutlet weak var currency: UIView?
     @IBOutlet weak var expenses: UIView?
@@ -20,8 +23,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var averageExchangeRate: UILabel!
     @IBOutlet weak var baseCurranceValue: UILabel!
     
-    
-    
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,24 +32,44 @@ class DashboardViewController: UIViewController,UITextFieldDelegate {
         setStyleFor(view: expenses!)
         setTextfieldStyleFor(textField: rate!)
         
-        // TEST
-        
-        
+        //////////////////////// TEST
         
 //        let m: Model = Model.sharedInstance
-//        m.addCurrency(name: "Saudi Riyal", symbol: "SAR", rate: 1.0)
-//        m.deleteCurrency(withSymbol: "AUD")
+////        m.addCurrency(name: "Saudi Riyal", symbol: "SAR", rate: 1.0)
+////        m.deleteCurrency(withSymbol: "AUD")
 //        let x = m.getCurrencies()!
 //        print(x.count);
-        let w:WebServices = WebServices.sharedInstance
-        w.getCurrencies()
+//        let w:WebServices = WebServices.sharedInstance
+//        w.delegate=self
+//        w.getCurrencies()
+//      
+        LocationService.sharedInstance.delegate = self
+        LocationService.sharedInstance.startUpdatingLocation()
         
-        
-        //
+        //////////////////////
         
         
         rate.delegate = self
     }
+    
+    ///////// TEST
+    func didRetrieveAndUpdateCurrencies(numOfCurrencies: Int) {
+        print(numOfCurrencies)
+    }
+    
+    func tracingLocation(currentLocation: CLLocation) {
+        LocationService.sharedInstance.getCountryWith(locaiton: currentLocation)
+        LocationService.sharedInstance.stopUpdatingLocation()
+    }
+
+    func didReverseGeocode(name: String, country: String, countryCode: String, city: String, timeZone: TimeZone) {
+        print(city)
+    }
+    
+    func tracingLocationDidFailWithError(error: NSError) {
+        print(error.description)
+    }
+    /////////
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -7,15 +7,16 @@
 //
 
 import Foundation
+
 protocol WebServicesDelegate {
-    func didRetrieveCurrencies()
-    func playlistDidTap()
+    func didRetrieveAndUpdateCurrencies(numOfCurrencies: Int)
 }
 
 
 class WebServices {
     
     static let sharedInstance = WebServices()
+    var delegate: WebServicesDelegate?
     private init(){}
     
     let session = URLSession.shared
@@ -50,47 +51,20 @@ class WebServices {
                 }
                 
                 if let results = parsedResult as? NSArray {
-                    print(results[0])
                     for item in results{
                         let cur = item as! NSDictionary
                         let symbol = String(describing: cur.value(forKey: "id")!)
-//                        print(symbol)
                         var name:String = String(describing: cur.value(forKey: "description")!)
                         name = name.substring(from: (name.index(name.startIndex, offsetBy: 4)))
                         name = name.replacingOccurrences(of: ",", with: "")
                         name = name.replacingOccurrences(of: "  ", with: " ")
-                        print(name)
-//                        print(symbol + " " + name)
+                        Model.sharedInstance.addCurrency(name: name, symbol: symbol)
                     }
+                    self.delegate?.didRetrieveAndUpdateCurrencies(numOfCurrencies: results.count)
                 }
                 
-                // Log the results to the console, so you can see what is being sent back from the service.
-//                print(parsedResult)
-                
-                // Extract an element from the data as an array, if your JSON response returns a dictionary you will need to convert it to an NSDictionary
-                // Why must parsedResult be cast to AnyObject if it is already declared as type Any, there is a clue in the syntax :-)
-//                if let moviesArray = (parsedResult as AnyObject).value(forKey: element) as? NSArray
-//                {
-//                    var id:String?
-//                    for m in moviesArray
-//                    {
-//                        let movie = m as! NSDictionary
-//                        
-//                        if movie.value(forKey: "original_title") as! String == self.movie_name.text
-//                        {
-//                            id = String(describing: movie.value(forKey: "id")!)
-//                            self.getRandomMovieImage(id!)
-//                            break
-//                        }
-//                    }
-//                    if id == ""
-//                    {
-//                        print("Movie not found")
-//                    }
-//                }
             }
         })
-        // Execute the task
         task.resume()
     }
     

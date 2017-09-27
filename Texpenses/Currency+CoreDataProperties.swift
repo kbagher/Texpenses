@@ -2,7 +2,7 @@
 //  Currency+CoreDataProperties.swift
 //  Texpenses
 //
-//  Created by Kassem Bagher on 26/9/17.
+//  Created by Kassem Bagher on 27/9/17.
 //  Copyright © 2017 Kassem Bagher. All rights reserved.
 //
 
@@ -18,7 +18,6 @@ extension Currency {
 
     @NSManaged public var name: String?
     @NSManaged public var symbol: String?
-    @NSManaged public var rate: Double
     @NSManaged public var trips: NSSet?
 
 }
