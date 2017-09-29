@@ -40,32 +40,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         LocationService.sharedInstance.delegate = self
         WebServices.sharedInstance.delegate=self
         WebServices.sharedInstance.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: "AU")!)
-        //////////////////////// TEST
-        
-//        let m: Model = Model.sharedInstance
-////        m.addCurrency(name: "Saudi Riyal", symbol: "SAR", rate: 1.0)
-////        m.deleteCurrency(withSymbol: "AUD")
-//        let x = m.getCurrencies()!
-//        print(x.count);
-//        let w:WebServices = WebServices.sharedInstance
-//        w.delegate=self
-//        w.getCurrencies()
-////
-//        LocationService.sharedInstance.delegate = self
-//        LocationService.sharedInstance.startUpdatingLocation()
-
-        
-//        let x = Model.sharedInstance.getCurrentTrip()
-//        if x == nil {
-//            print("NILL")
-//        }
-
-//        let m = Model.sharedInstance;
-//        
-//        m.addTrip(countryName: "Saudi Arabia", countryCode: "AU", startDate: Date.init(), currency: m.getCurrencyWithCountry(code: "AU")!)
-        
-        //////////////////////
-        
         
         rate.delegate = self
     }
@@ -335,60 +309,12 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
                 return false
             }
             rate.text? += string
-            let amount:Double = Double(rate.text!)!
             updateExchangeRateCalculator()
             return false
         default:
             return false
         }
     }
-
-    //     WILL BE USED LATER
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//
-//        let  char = string.cString(using: String.Encoding.utf8)!
-//        let isBackSpace = strcmp(char, "\\b")
-//
-//        if (isBackSpace == -92) {
-//            if rateText.characters.count == 0{
-//                return false
-//            }
-//            rateText.remove(at: rateText.index(before: rateText.endIndex))
-//            rate.text = formatCurrency(value: rateText)
-//            baseCurranceValue.text = formatCurrency(value: String(Double(rateText)! * staticRate))
-//            return false
-//        }
-//
-//        switch string {
-//            case "0","1","2","3","4","5","6","7","8","9",".":
-//                if string == "." && rateText.contains(".") {
-//                    return false
-//                }
-//            rateText += string
-//            print(rateText)
-//            print(rate.text!)
-//            rate.text = formatCurrency(value: rateText)
-//            baseCurranceValue.text = String(Double(rateText)! * staticRate)
-//            return false
-//            default:
-//                return false
-//            }
-//        }
-
-    
-    // will be used later
-//    func formatCurrency(value: String) ->String {
-//        let doubleValue = Double(value) ?? 0.0
-//        let formatter = NumberFormatter()
-//        formatter.minimumFractionDigits = (value.contains(".00")) ? 0 : 2
-//        formatter.maximumFractionDigits = 2
-//        formatter.currencySymbol = ""
-//        formatter.numberStyle = .currency
-//        return formatter.string(from: NSNumber(value: doubleValue)) ?? "\(doubleValue)"
-//    }
-
-    
     
     // MARK: - UI
     

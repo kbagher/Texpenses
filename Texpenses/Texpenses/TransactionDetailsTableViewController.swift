@@ -10,7 +10,9 @@ import UIKit
 
 class TransactionDetailsTableViewController: UITableViewController {
     
-    var transaction: Transaction_OLD? {
+    
+    let model = Model.sharedInstance
+    var transaction: Transaction? {
         didSet {
             // Update the view.
             configureView()
@@ -39,13 +41,33 @@ class TransactionDetailsTableViewController: UITableViewController {
             let date:UILabel = tableView.cellForRow(at: IndexPath(item: 3, section: 0))?.viewWithTag(200) as! UILabel
             let time:UILabel = tableView.cellForRow(at: IndexPath(item: 4, section: 0))?.viewWithTag(200) as! UILabel
             
+            print(detail)
+            
+            // Trip information and currency symbol
+            let trip = detail.trip
+            let tripCurrencySymbol = model.getCurrencySymbolFor(CurrencyCode: (trip?.currency?.symbol)!)
+            let baseCurrencySymbol = model.getCurrencySymbolFor(CurrencyCode: (model.getPreferences()?.userCurrency?.symbol)!)
+            
+            
+            // Title and location
             title.text = detail.title
-            location.text = detail.locationName
-            countryCost.text = detail.countryCost
-            baseCost.text = detail.baseCost
-            rate.text = detail.exchangeRate
-            date.text = detail.date
-            time.text = detail.time
+            location.text = detail.locationName! + ", " + detail.locality! + ", " + (detail.trip?.country)!
+            
+            // Expense amount and rate
+            countryCost.text =  tripCurrencySymbol + String(detail.amount)
+            baseCost.text = baseCurrencySymbol + String(detail.amount * detail.exchangeRate)
+            rate.text = String(detail.exchangeRate)
+            
+            // Transaction date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            date.text = formatter.string(from: detail.date! as Date)
+            
+            // Transaction time
+            formatter.dateFormat = "hh:mm a"
+            formatter.pmSymbol = "PM"
+            formatter.amSymbol = "AM"
+            time.text = formatter.string(from: detail.date! as Date)
         }
     }
 

@@ -155,6 +155,7 @@ class Model {
     }
     
     // MARK: - Transactions
+    // MARK: CRUD operations
     func addTransactionFor(Trip trip:Trip,amount:Double,title:String,latitude:Double,longitude:Double,locality:String,locationName:String) -> Bool {
         let entity =  NSEntityDescription.entity(forEntityName: "Transaction",in:managedContext)
         let transaction = Transaction(entity: entity!,insertInto:managedContext)
@@ -170,6 +171,25 @@ class Model {
         updateDatabase()
         return true
     }
+    
+    func getTransactions() -> [Transaction]?
+    {
+        do
+        {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Transaction")
+            let results = try managedContext.fetch(fetchRequest)
+            if results.count == 0 {
+                return nil
+            }
+            return results as? [Transaction]
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        return nil;
+    }
+
     
     
     // MARK: - Trips
@@ -282,6 +302,14 @@ class Model {
     func updateTrip(BaseCurrency trip:Trip, currency c:Currency){
         trip.baseCurrency = c
         updateDatabase()
+    }
+    
+    func getCurrencySymbolFor(CurrencyCode c:String) -> String{
+        let localeGBP = Locale
+            .availableIdentifiers
+            .map { Locale(identifier: $0) }
+            .first { $0.currencyCode == c }
+        return (localeGBP?.currencySymbol)!
     }
     
     // MARK: - Helping methods

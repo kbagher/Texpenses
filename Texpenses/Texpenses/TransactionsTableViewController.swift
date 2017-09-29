@@ -10,17 +10,29 @@ import UIKit
 
 class TransactionsTableViewController: UITableViewController,UISplitViewControllerDelegate {
 
-    let transactions = Transaction_OLD.init().getDummyData()
+    var transactions = [Transaction]()
+    let model = Model.sharedInstance
+    @IBOutlet weak var country: UILabel!
+    
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
+        if let t = model.getCurrentActiveTrip(){
+            
+            country.text = t.country
+            
+            if let tr = t.transactions{
+                transactions = tr.array as! [Transaction]
+            }
+        }
         
         // display master and details on iPad
         self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
@@ -33,6 +45,8 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
 
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        updateTransactions()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,14 +54,13 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         // Dispose of any resources that can be recreated.
     }
 
-
+    // MARK: - Table view data source
     // delete the selected row
+    
     func deleteRow(atIndexPath index:[IndexPath]) {
         tableView.deleteRows(at: index, with: UITableViewRowAnimation.automatic)
     }
     
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -62,6 +75,8 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+  
+
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .delete {
@@ -71,22 +86,44 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         }
     }
 
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell", for: indexPath)
         
         let title:UILabel = cell.viewWithTag(100) as! UILabel
         let price:UILabel = cell.viewWithTag(200) as! UILabel
+        var cSymbol = ""
+        
+        if let t = model.getCurrentActiveTrip(){
+            cSymbol = model.getCurrencySymbolFor(CurrencyCode: (t.currency?.symbol)!)
+        }
         
         title.text = transactions[indexPath.item].title
-        price.text = transactions[indexPath.item].countryCost
+        price.text = cSymbol + String(transactions[indexPath.item].amount)
 
         return cell
     }
- 
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showTransactionDetails", sender: indexPath.row)
+        if (self.splitViewController?.isCollapsed)! {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    // MARK: - Helping methods
+    func updateTransactions(){
+        if let t = model.getCurrentActiveTrip(){
+            if let tr = t.transactions{
+                transactions = tr.array as! [Transaction]
+                transactions = transactions.reversed()
+            }
+        }
+    }
+    
+    // MARK: - Navigation and Split View
+
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
+        
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? TransactionDetailsTableViewController else { return false }
         if topAsDetailController.transaction == nil {
@@ -96,53 +133,6 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         return false
     }
     
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showTransactionDetails", sender: indexPath.row)
-        if (self.splitViewController?.isCollapsed)! {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
-    }
-
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
