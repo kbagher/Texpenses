@@ -15,8 +15,9 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
     @IBOutlet var expenseTitle: UILabel!
     @IBOutlet var expense: UITextField!
     @IBOutlet var map: MKMapView!
-    let location = LocationService.sharedInstance
-
+    private let location = LocationService.sharedInstance
+    private let model = Model.sharedInstance
+    private var place: CLPlacemark?
     
     // MARK: - View lifecycle
     
@@ -28,7 +29,9 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(AddExpenseViewController.setTitle(sender:)))
         expenseTitle.addGestureRecognizer(tap)
-
+        
+        currency.text = model.getCurrentActiveTrip()?.currency?.symbol
+        
         location.delegate = self
         location.startUpdatingLocation()
     }
@@ -61,8 +64,70 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
     }
     
     @IBAction func saveExpense(_ sender: AnyObject) {
-        expense.endEditing(true)
-        dismiss(animated: true, completion: nil)
+        if !isDataReady(){
+            return
+        }
+        if let trip = model.getCurrentActiveTrip(){
+            let _ = model.addTransactionFor(Trip: trip, amount: Double(expense.text!)!, title: expenseTitle.text!, latitude: (location.currentLocation?.coordinate.latitude)!, longitude: (location.currentLocation?.coordinate.longitude)!, locality: (place?.locality)!, locationName: (place?.name)!)
+            
+            expense.endEditing(true)
+            dismiss(animated: true, completion: nil)
+        }
+        else{
+            displayNoActiveTrip()
+            return
+        }
+    }
+    
+    func displayNoLocation(){
+        let alert = UIAlertController(title: "No Location", message: "It looks like we can't get your current location 😣.\nMake sure location service is on and try again", preferredStyle: UIAlertControllerStyle.alert);
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alert, animated: true, completion: nil);
+    }
+    
+    func displayNoActiveTrip(){
+        let alert = UIAlertController(title: "No active trip", message: "It looks you don't have any active trip.\nPlease go to the dashboard and create one", preferredStyle: UIAlertControllerStyle.alert);
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alert, animated: true, completion: nil);
+    }
+    
+    func displayNoTitle(){
+        let alert = UIAlertController(title: "No Title", message: "Please enter a valid title for your expense.\nYou don't want to lose track of it, don't you! 🙈", preferredStyle: UIAlertControllerStyle.alert);
+        alert.addAction(UIAlertAction(title: "Sure 😅", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alert, animated: true, completion: nil);
+    }
+    
+    func displayNoExpenseAmount(){
+        let alert = UIAlertController(title: "No Amount", message: "Please enter a valid amount for your expense.\nWe're pretty suere you paid something for that! 👀", preferredStyle: UIAlertControllerStyle.alert);
+        alert.addAction(UIAlertAction(title: "Sure i did 😅", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alert, animated: true, completion: nil);
+    }
+    
+    func isDataReady() -> Bool{
+        // Check user's location availability
+        if place == nil || location.currentLocation == nil{
+            displayNoLocation()
+            return false
+        }
+        
+        // check title filed 
+        if let _ = expenseTitle.text{
+            expenseTitle.text = expenseTitle.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            if (expenseTitle.text?.isEmpty)! || expenseTitle.text == "Title..."{
+                displayNoTitle()
+                return false
+            }
+        }
+
+        // check amount filed
+        if let _ = expense.text{
+            if (expense.text?.isEmpty)!{
+                displayNoExpenseAmount()
+                return false
+            }
+        }
+        
+        return true
     }
     
     func setTitle(sender:UITapGestureRecognizer) {
@@ -89,8 +154,13 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
     }
 
 
-    // MARK: - Location Manager
+    // MARK: - Location Service
 
+    func didReverseGeocode(place: CLPlacemark) {
+        self.place = place
+    }
+    
+    
     func tracingLocation(currentLocation: CLLocation) {
         let center = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -101,6 +171,8 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
         myAnnotation.coordinate = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
         map.removeAnnotations(map.annotations)
         map.addAnnotation(myAnnotation)
+        
+        location.getReversedGeocodeWith(locaiton: currentLocation)
         
         location.stopUpdatingLocation()
     }

@@ -104,7 +104,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                     let pm = placemarks![0]
                     print("reversed")
                     delegate.didReverseGeocode!(place: pm)
-                    delegate.didReverseGeocode!(name: pm.name!, country: pm.country!, countryCode: pm.isoCountryCode!,city: pm.locality!, timeZone: pm.timeZone!)
+//                    delegate.didReverseGeocode!(name: pm.name!, country: pm.country!, countryCode: pm.isoCountryCode!,city: pm.locality!, timeZone: pm.timeZone!)
                 }}
         )
     }

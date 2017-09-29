@@ -154,6 +154,23 @@ class Model {
         updateDatabase()
     }
     
+    // MARK: - Transactions
+    func addTransactionFor(Trip trip:Trip,amount:Double,title:String,latitude:Double,longitude:Double,locality:String,locationName:String) -> Bool {
+        let entity =  NSEntityDescription.entity(forEntityName: "Transaction",in:managedContext)
+        let transaction = Transaction(entity: entity!,insertInto:managedContext)
+        transaction.trip = trip
+        transaction.amount = amount
+        transaction.title = title
+        transaction.latitude = latitude
+        transaction.longitude = longitude
+        transaction.locality = locality
+        transaction.locationName = locationName
+        transaction.date = Date() as NSDate
+        transaction.exchangeRate = trip.currentExchangeRate
+        updateDatabase()
+        return true
+    }
+    
     
     // MARK: - Trips
     

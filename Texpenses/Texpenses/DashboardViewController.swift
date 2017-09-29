@@ -70,43 +70,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         rate.delegate = self
     }
     
-    ///////// TEST
-
-    
-    func tracingLocation(currentLocation: CLLocation) {
-        print("got location")
-        isAppDataReady()
-        LocationService.sharedInstance.stopUpdatingLocation()
-    }
-
-    
-    
-    func didReverseGeocode(name: String, country: String, countryCode: String, city: String, timeZone: TimeZone) {
-        countryName.text = country
-        cityName.text = city
-        if let c = Model.sharedInstance.getCurrencyWithCountry(code: countryCode){
-            currecnyName.text = c.name
-            currecnySymbol.text = c.symbol
-        }
-    }
-    
-    func didRetrieveExchangeRate(rate: Double) {
-        if let t = model.getCurrentActiveTrip(){
-            model.updateTrip(t, ExchangeRate: rate)
-            isAppDataReady()
-        }
-    }
-    
-    func didRetrieveExchangeRateError(error: NSError) {
-        
-    }
-    
-    
-    func tracingLocationDidFailWithError(error: NSError) {
-        print(error.description)
-    }
-    /////////
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isAppDataReady()
@@ -123,8 +86,56 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Delegates
+    // MARK: Location
+    func tracingLocation(currentLocation: CLLocation) {
+        print("got location")
+        isAppDataReady()
+        LocationService.sharedInstance.stopUpdatingLocation()
+    }
     
+    func tracingLocationDidFailWithError(error: NSError) {
+        print(error.description)
+    }
+
+    func didReverseGeocode(name: String, country: String, countryCode: String, city: String, timeZone: TimeZone) {
+        countryName.text = country
+        cityName.text = city
+        if let c = Model.sharedInstance.getCurrencyWithCountry(code: countryCode){
+            currecnyName.text = c.name
+            currecnySymbol.text = c.symbol
+        }
+    }
+
+    func didReverseGeocode(place: CLPlacemark) {
+        currentPlaceMark = place
+        isAppDataReady()
+    }
     
+    // MARK: Exchange Rate
+    
+    func didRetrieveExchangeRate(rate: Double) {
+        if let t = model.getCurrentActiveTrip(){
+            model.updateTrip(t, ExchangeRate: rate)
+            isAppDataReady()
+        }
+    }
+    
+    func didRetrieveExchangeRateError(error: NSError) {
+        
+    }
+
+    // MARK: Currencies Update
+    
+    func didRetrieveCurrenciesError(error: NSError) {
+        let alert = UIAlertController(title: "Error", message: "Unable to retrieve currencies from server", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func didRetrieveCurrencies(numOfCurrencies: Int) {
+        isAppDataReady()
+    }
     
     // MARK: - Helping Methods
     func createNewTrip(){
@@ -162,11 +173,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         present(alert, animated: true, completion: nil);
     }
 
-    
-    func didReverseGeocode(place: CLPlacemark) {
-        currentPlaceMark = place
-        isAppDataReady()
-    }
 
     func isAppDataReady() {
         // Check if there any currencies in the database
@@ -231,6 +237,14 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         }
     }
     
+    func updateExchangeRateCalculator(){
+        var amount:Double = 1
+        if !(rate.text?.isEmpty)!{
+            amount = Double(rate.text!)!
+        }
+        baseCurranceValue.text = String(model.calculateExchangeRateForCurrentTrip(Amount: amount))
+    }
+    
     func displayDashboardInfo(){
         if !appDataReady {return}
         
@@ -255,21 +269,12 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
             let from = t?.currency?.symbol
             let to = model.getPreferences()?.userCurrency?.symbol
             averageExchangeRate.text = "1 \(from!) = \(r) \(to!)"
+            updateExchangeRateCalculator()
         }
         else{
             averageExchangeRate.text = "-"
         }
         
-    }
-    
-    func didRetrieveCurrenciesError(error: NSError) {
-        let alert = UIAlertController(title: "Error", message: "Unable to retrieve currencies from server", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func didRetrieveCurrencies(numOfCurrencies: Int) {
-        isAppDataReady()
     }
 
     // MARK: - Keyboard
@@ -320,11 +325,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
             rate.text?.remove(at: (rate.text?.index(before: (rate.text?.endIndex)!))!)
 
             // recalculate the value
-            var amount:Double = 1
-            if !(rate.text?.isEmpty)!{
-                amount = Double(rate.text!)!
-            }
-            baseCurranceValue.text = String(model.calculateExchangeRateForCurrentTrip(Amount: amount))
+            updateExchangeRateCalculator()
             return false
         }
         
@@ -335,7 +336,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
             }
             rate.text? += string
             let amount:Double = Double(rate.text!)!
-            baseCurranceValue.text = String(model.calculateExchangeRateForCurrentTrip(Amount: amount))
+            updateExchangeRateCalculator()
             return false
         default:
             return false
