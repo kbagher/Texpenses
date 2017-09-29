@@ -1,21 +1,14 @@
-//
-//  LocationService.swift
-//
-//
-//  Created by Anak Mirasing on 5/18/2558 BE.
-//
-//
+
+
 import Foundation
 import CoreLocation
 
-protocol LocationServiceDelegate {
+@objc protocol LocationServiceDelegate {
     func tracingLocation(currentLocation: CLLocation)
     func tracingLocationDidFailWithError(error: NSError)
-    func didReverseGeocode(name:String,country:String,countryCode:String,city:String,timeZone:TimeZone)
+    @objc optional func didReverseGeocode(name:String,country:String,countryCode:String,city:String,timeZone:TimeZone)
+    @objc optional func didReverseGeocode(place:CLPlacemark)
 }
-//extension LocationServiceDelegate{
-//    func didReverseGeocode(name:String?="",country:String?="",countryCode:String?="",timeZone:TimeZone?=nil){}
-//}
 
 class LocationService: NSObject, CLLocationManagerDelegate {
     
@@ -37,7 +30,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             // you have 2 choice
             // 1. requestAlwaysAuthorization
             // 2. requestWhenInUseAuthorization
-            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest // The accuracy of the location data
@@ -92,7 +85,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         delegate.tracingLocationDidFailWithError(error: error)
     }
 
-    func getCountryWith(locaiton:CLLocation){
+    func getReversedGeocodeWith(locaiton:CLLocation){
         
         ceo.reverseGeocodeLocation(locaiton, completionHandler:
             {(placemarks, error) in
@@ -110,7 +103,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                 if pm.count > 0 {
                     let pm = placemarks![0]
                     print("reversed")
-                    delegate.didReverseGeocode(name: pm.name!, country: pm.country!, countryCode: pm.isoCountryCode!,city: pm.locality!, timeZone: pm.timeZone!)
+                    delegate.didReverseGeocode!(place: pm)
+                    delegate.didReverseGeocode!(name: pm.name!, country: pm.country!, countryCode: pm.isoCountryCode!,city: pm.locality!, timeZone: pm.timeZone!)
                 }}
         )
     }

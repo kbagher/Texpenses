@@ -10,13 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
-
+class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationServiceDelegate {
     @IBOutlet var currency: UILabel!
     @IBOutlet var expenseTitle: UILabel!
     @IBOutlet var expense: UITextField!
     @IBOutlet var map: MKMapView!
-    var locationManager: CLLocationManager!
+    let location = LocationService.sharedInstance
 
     
     // MARK: - View lifecycle
@@ -30,17 +29,8 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
         let tap = UITapGestureRecognizer(target: self, action: #selector(AddExpenseViewController.setTitle(sender:)))
         expenseTitle.addGestureRecognizer(tap)
 
-        
-        
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-
+        location.delegate = self
+        location.startUpdatingLocation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,14 +43,9 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
         unregisterNotifications()
     }
 
-    
-    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    @IBAction func saveExpense(_ sender: AnyObject) {
-        expense.endEditing(true)
-        dismiss(animated: true, completion: nil)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func closeView(_sender : AnyObject){
@@ -69,7 +54,17 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
     }
 
     
-    // MARK: - Other
+    // MARK: - Helping functions
+    
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return false
+    }
+    
+    @IBAction func saveExpense(_ sender: AnyObject) {
+        expense.endEditing(true)
+        dismiss(animated: true, completion: nil)
+    }
+    
     func setTitle(sender:UITapGestureRecognizer) {
         let alert = UIAlertController(title: nil, message: "Enter expense title", preferredStyle: .alert)
         
@@ -95,27 +90,22 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,CLLocationM
 
 
     // MARK: - Location Manager
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
-        
-        let location = locations.last!
-        
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+
+    func tracingLocation(currentLocation: CLLocation) {
+        let center = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         map.setRegion(region, animated: true)
         
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
         map.removeAnnotations(map.annotations)
         map.addAnnotation(myAnnotation)
+        
+        location.stopUpdatingLocation()
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func tracingLocationDidFailWithError(error: NSError) {
+        
     }
     
     // MARK: - Keyboard visibility

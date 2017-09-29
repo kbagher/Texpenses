@@ -2,7 +2,7 @@
 //  Transaction+CoreDataProperties.swift
 //  Texpenses
 //
-//  Created by Kassem Bagher on 26/9/17.
+//  Created by Kassem Bagher on 28/9/17.
 //  Copyright © 2017 Kassem Bagher. All rights reserved.
 //
 
@@ -16,8 +16,10 @@ extension Transaction {
         return NSFetchRequest<Transaction>(entityName: "Transaction")
     }
 
-    @NSManaged public var title: String?
     @NSManaged public var amount: Double
+    @NSManaged public var title: String?
+    @NSManaged public var date: NSDate?
+    @NSManaged public var exchangeRate: Double
     @NSManaged public var trip: Trip?
 
 }

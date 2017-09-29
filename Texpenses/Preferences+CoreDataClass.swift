@@ -1,5 +1,5 @@
 //
-//  Trip+CoreDataClass.swift
+//  Preferences+CoreDataClass.swift
 //  Texpenses
 //
 //  Created by Kassem Bagher on 28/9/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Trip)
-public class Trip: NSManagedObject {
+@objc(Preferences)
+public class Preferences: NSManagedObject {
 
 }

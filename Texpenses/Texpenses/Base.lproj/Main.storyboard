@@ -44,7 +44,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhU-nD-dg9">
                                 <rect key="frame" x="13" y="198" width="187.66666666666666" height="134"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-T1-4Pn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-T1-4Pn">
                                         <rect key="frame" x="8" y="44" width="171.66666666666666" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="Coy-Lc-afc"/>
@@ -74,7 +74,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Australian Dollar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2D-tK-8YH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2D-tK-8YH">
                                         <rect key="frame" x="6" y="68" width="173.66666666666666" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="DdU-qS-FM4"/>
@@ -279,8 +279,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bz3-6v-DYy">
                                 <rect key="frame" x="0.0" y="64" width="414" height="118"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Australia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arv-7G-WFn">
-                                        <rect key="frame" x="161.66666666666663" y="52" width="92.333333333333343" height="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arv-7G-WFn">
+                                        <rect key="frame" x="201.66666666666666" y="52" width="10.666666666666686" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="29" id="2s1-MZ-wgN"/>
                                             <constraint firstAttribute="height" constant="29" id="q7h-TB-hb3"/>
@@ -308,8 +308,8 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Melbourne" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OF9-Zi-SVA">
-                                        <rect key="frame" x="168.66666666666666" y="83" width="78" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OF9-Zi-SVA">
+                                        <rect key="frame" x="196" y="83" width="22" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="W49-F9-Scq"/>
                                             <constraint firstAttribute="height" constant="20" id="fR8-ij-W4N"/>
@@ -482,8 +482,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8R6-J1-fcV">
                                 <rect key="frame" x="214.66666666666663" y="198" width="187.33333333333337" height="134"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,250 AUD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zR-oQ-58f">
-                                        <rect key="frame" x="50.666666666666657" y="44" width="86" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zR-oQ-58f">
+                                        <rect key="frame" x="89.666666666666657" y="44" width="8.3333333333333712" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="63" id="9gP-X1-wZb"/>
                                             <constraint firstAttribute="height" constant="21" id="gs6-S0-W38"/>
@@ -688,7 +688,7 @@
                                             </mask>
                                         </variation>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpI-4X-X5N">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpI-4X-X5N">
                                         <rect key="frame" x="286" y="20" width="69" height="20.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="69" id="S9Q-mM-vSU"/>
@@ -721,7 +721,7 @@
                                         <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmV-v1-RHe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmV-v1-RHe">
                                         <rect key="frame" x="286" y="68.333333333333314" width="69" height="20.333333333333371"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="69" id="48p-sN-rFQ"/>
@@ -794,7 +794,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 AUD = 0.79 USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwC-B4-MEx">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwC-B4-MEx">
                                         <rect key="frame" x="114.66666666666669" y="93" width="159" height="13.333333333333314"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="359" id="bvH-tn-Eke"/>
@@ -1239,13 +1239,17 @@
                     <connections>
                         <outlet property="averageExchangeRate" destination="nwC-B4-MEx" id="gsC-ua-zFC"/>
                         <outlet property="baseCurranceValue" destination="2Q8-F1-zQv" id="aNJ-RV-phD"/>
+                        <outlet property="baseCurrency" destination="YmV-v1-RHe" id="b88-61-67F"/>
+                        <outlet property="cityName" destination="OF9-Zi-SVA" id="GtJ-w7-iBj"/>
+                        <outlet property="countryName" destination="arv-7G-WFn" id="FPg-Or-2QM"/>
                         <outlet property="currecnyName" destination="Z2D-tK-8YH" id="Pei-tA-kFJ"/>
-                        <outlet property="currecnySymbol" destination="nXK-T1-4Pn" id="9cL-6j-GrP"/>
+                        <outlet property="currecnySymbol" destination="nXK-T1-4Pn" id="1yb-eg-z7e"/>
                         <outlet property="currency" destination="lhU-nD-dg9" id="SJe-81-T68"/>
                         <outlet property="exchangeRate" destination="8cD-9L-a7F" id="3iJ-3c-opY"/>
                         <outlet property="expenses" destination="8R6-J1-fcV" id="LBZ-ZO-ZAh"/>
                         <outlet property="expensesSoFar" destination="3zR-oQ-58f" id="QpL-eO-bnO"/>
                         <outlet property="rate" destination="JzA-yb-idB" id="mVb-Dq-SBS"/>
+                        <outlet property="tripCurrency" destination="jpI-4X-X5N" id="o06-gK-n6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZi-cV-Ovg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2187,7 +2191,7 @@
         <image name="transactions" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CUn-Hr-Dwt"/>
+        <segue reference="yJX-7C-53z"/>
         <segue reference="NbX-QZ-6Ah"/>
     </inferredMetricsTieBreakers>
 </document>

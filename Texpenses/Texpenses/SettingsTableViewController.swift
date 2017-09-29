@@ -11,6 +11,7 @@ import MessageUI
 
 class SettingsTableViewController: UITableViewController,MFMailComposeViewControllerDelegate {
 
+    let model = Model.sharedInstance
     
     // MARK: - View lifecycle
     
@@ -154,7 +155,12 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
     func updateCurrency(){
         if let c = tableView.cellForRow(at: IndexPath(item: 0, section: 0)) {
             let userBaseCurrency:UILabel = c.viewWithTag(200) as! UILabel
-            userBaseCurrency.text = UserSettings.sharedInstance.getBaseCurrency()?.currency
+            if let cur = model.getPreferences()?.userCurrency{
+                userBaseCurrency.text = cur.symbol
+            }
+            else{
+                userBaseCurrency.text = "N/A"
+            }
         }
     }
     
