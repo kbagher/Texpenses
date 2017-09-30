@@ -221,6 +221,8 @@ class Model {
                         baseAmountSum += transaction.amount * transaction.exchangeRate
                         exchangeRateAvg += transaction.exchangeRate
                     }
+                    tripAmountSum = formatDecimalPoints(Number: tripAmountSum)
+                    baseAmountSum =  formatDecimalPoints(Number: baseAmountSum)
                     exchangeRateAvg = exchangeRateAvg / Double(transactions.count)
                 }
                 let summary = Summary(countryName: countryName, fromDate: fromDate!, toDate: toDate!, baseCurrency: baseCurrency, baseExpenses: String(baseAmountSum), countryCurrency: countryCurrency, countryExpenses: String(tripAmountSum), exchangeRate: String(exchangeRateAvg))
@@ -364,8 +366,11 @@ class Model {
         }
         return "N/A"
     }
+
+    func formatDecimalPoints(Number n:Double) -> Double{
+        return Double(round(100 * n)/100)
+    }
     
-    // MARK: - Helping methods
     func format(Time time:Date?) -> String?{
         if let t = time{
             let formatter = DateFormatter()

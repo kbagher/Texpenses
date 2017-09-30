@@ -55,7 +55,8 @@ class WebServices {
                 }
                 if let results = parsedResult as? NSDictionary {
                     var rate = Double(results.value(forKey: "to_amount") as! Double)
-                    rate = Double(round(100 * rate)/100)
+//                    rate = Double(round(100 * rate)/100)
+                    rate = Model.sharedInstance.formatDecimalPoints(Number: rate)
                     self.delegate?.didRetrieveExchangeRate!(rate: rate)
                 }
                 
