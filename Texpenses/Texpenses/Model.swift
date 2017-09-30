@@ -168,6 +168,7 @@ class Model {
         transaction.locationName = locationName
         transaction.date = Date() as NSDate
         transaction.exchangeRate = trip.currentExchangeRate
+        transaction.trip = trip
         trip.addToTransactions(transaction)
         updateDatabase()
         return true
@@ -199,8 +200,8 @@ class Model {
         if let trips = getTrips(){
             print(trips.count)
             var summaries = [Summary]()
-            
             for trip in trips{
+                
                 var tripAmountSum = 0.0
                 var baseAmountSum = 0.0
                 var exchangeRateAvg = 0.0
@@ -211,7 +212,7 @@ class Model {
                 let countryCurrency = (trip.currency?.symbol)!
                 
                 let fromDate = format(Date: trip.startDate as Date?)
-                let toDate = format(Date: trip.startDate as Date?)
+                let toDate = format(Date: trip.endDate as Date?)
 
                 if let transactions = trip.transactions?.array,transactions.count > 0  {
                     for tr in transactions{
@@ -363,6 +364,19 @@ class Model {
         }
         return "N/A"
     }
+    
+    // MARK: - Helping methods
+    func format(Time time:Date?) -> String?{
+        if let t = time{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "hh:mm a"
+            formatter.pmSymbol = "PM"
+            formatter.amSymbol = "AM"
+            return formatter.string(from: t)
+        }
+        return "N/A"
+    }
+    
     private func updateDatabase()
     {
         do

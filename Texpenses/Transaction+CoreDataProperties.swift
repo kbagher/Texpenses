@@ -2,7 +2,7 @@
 //  Transaction+CoreDataProperties.swift
 //  Texpenses
 //
-//  Created by Kassem Bagher on 29/9/17.
+//  Created by Kassem Bagher on 30/9/17.
 //  Copyright © 2017 Kassem Bagher. All rights reserved.
 //
 

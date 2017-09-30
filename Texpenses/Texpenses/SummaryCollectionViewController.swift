@@ -98,6 +98,7 @@ class SummaryCollectionViewController: UICollectionViewController {
     // MARK: - Helping methods
     func getSummaries(){
         summaries = model.getTripsSummaries()?.reversed()
+        collectionView?.reloadData()
     }
     
 }

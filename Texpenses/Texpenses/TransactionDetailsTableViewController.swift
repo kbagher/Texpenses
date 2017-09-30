@@ -60,15 +60,10 @@ class TransactionDetailsTableViewController: UITableViewController {
             rate.text = String(detail.exchangeRate)
             
             // Transaction date
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
-            date.text = formatter.string(from: detail.date! as Date)
+            date.text = model.format(Date: detail.date! as Date)
             
             // Transaction time
-            formatter.dateFormat = "hh:mm a"
-            formatter.pmSymbol = "PM"
-            formatter.amSymbol = "AM"
-            time.text = formatter.string(from: detail.date! as Date)
+            time.text = model.format(Time: detail.date! as Date)
         }
     }
 
