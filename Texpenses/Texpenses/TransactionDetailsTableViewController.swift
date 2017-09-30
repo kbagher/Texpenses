@@ -45,6 +45,7 @@ class TransactionDetailsTableViewController: UITableViewController {
             
             // Trip information and currency symbol
             let trip = detail.trip
+            
             let tripCurrencySymbol = model.getCurrencySymbolFor(CurrencyCode: (trip?.currency?.symbol)!)
             let baseCurrencySymbol = model.getCurrencySymbolFor(CurrencyCode: (model.getPreferences()?.userCurrency?.symbol)!)
             

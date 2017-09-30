@@ -39,8 +39,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         setTextfieldStyleFor(textField: rate!)
         LocationService.sharedInstance.delegate = self
         WebServices.sharedInstance.delegate=self
-        WebServices.sharedInstance.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: "AU")!)
-        
         rate.delegate = self
     }
     
@@ -224,6 +222,8 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         
         
         let t = model.getCurrentActiveTrip()
+        
+        WebServices.sharedInstance.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
         
         // location
         countryName.text =  currentPlaceMark?.country

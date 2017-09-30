@@ -12,20 +12,24 @@ private let reuseIdentifier = "Cell"
 
 class SummaryCollectionViewController: UICollectionViewController {
 
-    var items = Summary.init().getDummyData()
+    var summaries: [Summary]?
+    let model = Model.sharedInstance
 
+    
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
+        getSummaries()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        getSummaries()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,7 +55,10 @@ class SummaryCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return items.count
+        if let sum = summaries{
+            return sum.count
+        }
+        return 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -68,13 +75,15 @@ class SummaryCollectionViewController: UICollectionViewController {
         let exchangeRate:UILabel = cell.viewWithTag(700)! as! UILabel
         
 
-        countryName.text = items[indexPath.item].countryName
-        countryExpenses.text = items[indexPath.item].countryExpenses
-        countryCurrency.text = items[indexPath.item].countryCurrency
-        date.text = items[indexPath.item].fromDate + " - " + items[indexPath.item].toDate
-        baseCurrency.text = items[indexPath.item].baseCurrency
-        baseExpenses.text = items[indexPath.item].baseExpenses
-        exchangeRate.text = "Average exchange rate 1 " + items[indexPath.item].countryCurrency + " = " + items[indexPath.item].exchangeRate + " " + items[indexPath.item].baseCurrency
+        if let sum = summaries?[indexPath.item]{
+            countryName.text = sum.countryName
+            countryExpenses.text = sum.countryExpenses
+            countryCurrency.text = sum.countryCurrency
+            date.text = sum.fromDate + " - " + sum.toDate
+            baseCurrency.text = sum.baseCurrency
+            baseExpenses.text = sum.baseExpenses
+            exchangeRate.text = "Average exchange rate 1 " + sum.countryCurrency + " = " + sum.exchangeRate + " " + sum.baseCurrency
+        }
 
         // Configure the cell
         cell.contentView.layer.masksToBounds = true
@@ -82,40 +91,13 @@ class SummaryCollectionViewController: UICollectionViewController {
         cell.contentView.layer.cornerRadius = 12
         cell.contentView.layer.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0).cgColor
         cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
-
     
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    // MARK: - Helping methods
+    func getSummaries(){
+        summaries = model.getTripsSummaries()?.reversed()
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
-    }
-    */
-
 }

@@ -12,12 +12,11 @@
 		132BEC7A1F7B3AA20070AE34 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BEC791F7B3AA20070AE34 /* LocationService.swift */; };
 		132BEC8F1F7CB04B0070AE34 /* Preferences+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BEC8D1F7CB04B0070AE34 /* Preferences+CoreDataClass.swift */; };
 		132BEC901F7CB04C0070AE34 /* Preferences+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BEC8E1F7CB04B0070AE34 /* Preferences+CoreDataProperties.swift */; };
-		132BECA01F7CEA460070AE34 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BEC9E1F7CEA460070AE34 /* Trip+CoreDataClass.swift */; };
-		132BECA11F7CEA460070AE34 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BEC9F1F7CEA460070AE34 /* Trip+CoreDataProperties.swift */; };
-		132BECAA1F7DF6940070AE34 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BECA81F7DF6940070AE34 /* Transaction+CoreDataClass.swift */; };
-		132BECAB1F7DF6940070AE34 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BECA91F7DF6940070AE34 /* Transaction+CoreDataProperties.swift */; };
+		132BECB81F7E4FA20070AE34 /* Trip+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BECB41F7E4FA20070AE34 /* Trip+CoreDataClass.swift */; };
+		132BECB91F7E4FA20070AE34 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BECB51F7E4FA20070AE34 /* Trip+CoreDataProperties.swift */; };
+		132BECBA1F7E4FA20070AE34 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BECB61F7E4FA20070AE34 /* Transaction+CoreDataClass.swift */; };
+		132BECBB1F7E4FA20070AE34 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132BECB71F7E4FA20070AE34 /* Transaction+CoreDataProperties.swift */; };
 		1350836A1F515C2800F438F7 /* TexpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083691F515C2800F438F7 /* TexpensesUITests.swift */; };
-		135083721F515DE300F438F7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083711F515DE300F438F7 /* UserSettings.swift */; };
 		1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */; };
 		135653401F7A2A28001DCD35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356533F1F7A2A28001DCD35 /* Model.swift */; };
 		135653641F7A4C54001DCD35 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653631F7A4C54001DCD35 /* WebServices.swift */; };
@@ -28,8 +27,6 @@
 		136D0BAC1F4D793F00DEEB3B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136D0BAB1F4D793F00DEEB3B /* MapKit.framework */; };
 		136D0BAE1F4DB86F00DEEB3B /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */; };
 		136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BAF1F4E483B00DEEB3B /* Summary.swift */; };
-		136D0BB21F4E55C500DEEB3B /* Currency_OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB11F4E55C500DEEB3B /* Currency_OLD.swift */; };
-		136D0BB41F4E579000DEEB3B /* Transaction_OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BB31F4E579000DEEB3B /* Transaction_OLD.swift */; };
 		136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BE11F4EE1B400DEEB3B /* DashboardViewController.swift */; };
 		13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DC01F4BA39A004FD91F /* AppDelegate.swift */; };
 		13C46DC61F4BA39A004FD91F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC41F4BA39A004FD91F /* Main.storyboard */; };
@@ -54,14 +51,13 @@
 		132BEC791F7B3AA20070AE34 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		132BEC8D1F7CB04B0070AE34 /* Preferences+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Preferences+CoreDataClass.swift"; path = "../Preferences+CoreDataClass.swift"; sourceTree = "<group>"; };
 		132BEC8E1F7CB04B0070AE34 /* Preferences+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Preferences+CoreDataProperties.swift"; path = "../Preferences+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		132BEC9E1F7CEA460070AE34 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataClass.swift"; path = "../Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
-		132BEC9F1F7CEA460070AE34 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataProperties.swift"; path = "../Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		132BECA81F7DF6940070AE34 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataClass.swift"; path = "../Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		132BECA91F7DF6940070AE34 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataProperties.swift"; path = "../Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		132BECB41F7E4FA20070AE34 /* Trip+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataClass.swift"; path = "../Trip+CoreDataClass.swift"; sourceTree = "<group>"; };
+		132BECB51F7E4FA20070AE34 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Trip+CoreDataProperties.swift"; path = "../Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		132BECB61F7E4FA20070AE34 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataClass.swift"; path = "../Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		132BECB71F7E4FA20070AE34 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Transaction+CoreDataProperties.swift"; path = "../Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		135083671F515C2800F438F7 /* TexpensesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TexpensesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		135083691F515C2800F438F7 /* TexpensesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexpensesUITests.swift; sourceTree = "<group>"; };
 		1350836B1F515C2800F438F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		135083711F515DE300F438F7 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelDatabase.xcdatamodel; sourceTree = "<group>"; };
 		1356533F1F7A2A28001DCD35 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		135653631F7A4C54001DCD35 /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
@@ -72,8 +68,6 @@
 		136D0BAB1F4D793F00DEEB3B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		136D0BAD1F4DB86F00DEEB3B /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		136D0BAF1F4E483B00DEEB3B /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
-		136D0BB11F4E55C500DEEB3B /* Currency_OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency_OLD.swift; sourceTree = "<group>"; };
-		136D0BB31F4E579000DEEB3B /* Transaction_OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction_OLD.swift; sourceTree = "<group>"; };
 		136D0BE11F4EE1B400DEEB3B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		13C46DBD1F4BA39A004FD91F /* Texpenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Texpenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C46DC01F4BA39A004FD91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,10 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */,
-				132BECA81F7DF6940070AE34 /* Transaction+CoreDataClass.swift */,
-				132BECA91F7DF6940070AE34 /* Transaction+CoreDataProperties.swift */,
-				132BEC9E1F7CEA460070AE34 /* Trip+CoreDataClass.swift */,
-				132BEC9F1F7CEA460070AE34 /* Trip+CoreDataProperties.swift */,
+				132BECB41F7E4FA20070AE34 /* Trip+CoreDataClass.swift */,
+				132BECB51F7E4FA20070AE34 /* Trip+CoreDataProperties.swift */,
+				132BECB61F7E4FA20070AE34 /* Transaction+CoreDataClass.swift */,
+				132BECB71F7E4FA20070AE34 /* Transaction+CoreDataProperties.swift */,
 				132BEC8D1F7CB04B0070AE34 /* Preferences+CoreDataClass.swift */,
 				132BEC8E1F7CB04B0070AE34 /* Preferences+CoreDataProperties.swift */,
 				132BEC751F7B34BC0070AE34 /* Currency+CoreDataClass.swift */,
@@ -150,9 +144,6 @@
 				135653631F7A4C54001DCD35 /* WebServices.swift */,
 				132BEC791F7B3AA20070AE34 /* LocationService.swift */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
-				136D0BB11F4E55C500DEEB3B /* Currency_OLD.swift */,
-				135083711F515DE300F438F7 /* UserSettings.swift */,
-				136D0BB31F4E579000DEEB3B /* Transaction_OLD.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -325,29 +316,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */,
-				132BECA01F7CEA460070AE34 /* Trip+CoreDataClass.swift in Sources */,
 				135653641F7A4C54001DCD35 /* WebServices.swift in Sources */,
 				132BEC901F7CB04C0070AE34 /* Preferences+CoreDataProperties.swift in Sources */,
 				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
-				136D0BB41F4E579000DEEB3B /* Transaction_OLD.swift in Sources */,
 				136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */,
 				132BEC7A1F7B3AA20070AE34 /* LocationService.swift in Sources */,
-				132BECAB1F7DF6940070AE34 /* Transaction+CoreDataProperties.swift in Sources */,
 				132BEC8F1F7CB04B0070AE34 /* Preferences+CoreDataClass.swift in Sources */,
-				135083721F515DE300F438F7 /* UserSettings.swift in Sources */,
 				136D0BAE1F4DB86F00DEEB3B /* AddExpenseViewController.swift in Sources */,
+				132BECBB1F7E4FA20070AE34 /* Transaction+CoreDataProperties.swift in Sources */,
 				135653401F7A2A28001DCD35 /* Model.swift in Sources */,
 				136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */,
-				132BECAA1F7DF6940070AE34 /* Transaction+CoreDataClass.swift in Sources */,
 				136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */,
 				132BEC781F7B34BC0070AE34 /* Currency+CoreDataProperties.swift in Sources */,
 				136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */,
-				132BECA11F7CEA460070AE34 /* Trip+CoreDataProperties.swift in Sources */,
 				1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
-				136D0BB21F4E55C500DEEB3B /* Currency_OLD.swift in Sources */,
 				132BEC771F7B34BC0070AE34 /* Currency+CoreDataClass.swift in Sources */,
+				132BECBA1F7E4FA20070AE34 /* Transaction+CoreDataClass.swift in Sources */,
+				132BECB81F7E4FA20070AE34 /* Trip+CoreDataClass.swift in Sources */,
 				136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */,
+				132BECB91F7E4FA20070AE34 /* Trip+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

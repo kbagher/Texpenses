@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Summary: NSObject{
+    class Summary: NSObject{
     var countryName:String = ""
     var fromDate:String = ""
     var toDate:String = ""

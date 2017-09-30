@@ -157,9 +157,9 @@ class Model {
     // MARK: - Transactions
     // MARK: CRUD operations
     func addTransactionFor(Trip trip:Trip,amount:Double,title:String,latitude:Double,longitude:Double,locality:String,locationName:String) -> Bool {
+        print("Adding transaction")
         let entity =  NSEntityDescription.entity(forEntityName: "Transaction",in:managedContext)
         let transaction = Transaction(entity: entity!,insertInto:managedContext)
-        transaction.trip = trip
         transaction.amount = amount
         transaction.title = title
         transaction.latitude = latitude
@@ -168,6 +168,7 @@ class Model {
         transaction.locationName = locationName
         transaction.date = Date() as NSDate
         transaction.exchangeRate = trip.currentExchangeRate
+        trip.addToTransactions(transaction)
         updateDatabase()
         return true
     }
@@ -193,6 +194,42 @@ class Model {
     
     
     // MARK: - Trips
+    
+    func getTripsSummaries() -> [Summary]?{
+        if let trips = getTrips(){
+            print(trips.count)
+            var summaries = [Summary]()
+            
+            for trip in trips{
+                var tripAmountSum = 0.0
+                var baseAmountSum = 0.0
+                var exchangeRateAvg = 0.0
+                
+                let countryName = trip.country!
+
+                let baseCurrency = (trip.baseCurrency?.symbol)!
+                let countryCurrency = (trip.currency?.symbol)!
+                
+                let fromDate = format(Date: trip.startDate as Date?)
+                let toDate = format(Date: trip.startDate as Date?)
+
+                if let transactions = trip.transactions?.array,transactions.count > 0  {
+                    for tr in transactions{
+                        let transaction = tr as! Transaction
+                        tripAmountSum += transaction.amount
+                        baseAmountSum += transaction.amount * transaction.exchangeRate
+                        exchangeRateAvg += transaction.exchangeRate
+                    }
+                    exchangeRateAvg = exchangeRateAvg / Double(transactions.count)
+                }
+                let summary = Summary(countryName: countryName, fromDate: fromDate!, toDate: toDate!, baseCurrency: baseCurrency, baseExpenses: String(baseAmountSum), countryCurrency: countryCurrency, countryExpenses: String(tripAmountSum), exchangeRate: String(exchangeRateAvg))
+                
+                summaries.append(summary)
+            }
+            return summaries
+        }
+        return nil
+    }
     
     func calculateExchangeRateForCurrentTrip(Amount amount:Double ) -> Double{
         if let t = getCurrentActiveTrip(){
@@ -257,15 +294,16 @@ class Model {
     // Add a new trip
     func addTrip(countryName:String,countryCode:String,startDate:Date,currency:Currency) -> Bool {
         if let c = getCurrentActiveTrip(), c.countryCode == countryCode{
-            print(c.country!)
             return false
         }
+        print("IN Addgin trips")
         let entity =  NSEntityDescription.entity(forEntityName: "Trip",in:managedContext)
         let trip = Trip(entity: entity!,insertInto:managedContext)
         trip.country = countryName
         trip.currency = currency
         trip.countryCode = countryCode
         trip.startDate = startDate as NSDate
+        trip.endDate = nil
         trip.baseCurrency = getPreferences()?.userCurrency
         updateDatabase()
         return true
@@ -278,7 +316,7 @@ class Model {
         do
         {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Trip")
-            
+
             let results = try managedContext.fetch(fetchRequest)
             return results as? [Trip]
         }
@@ -311,8 +349,20 @@ class Model {
             .first { $0.currencyCode == c }
         return (localeGBP?.currencySymbol)!
     }
+    func delete(Trip t:Trip) {
+        managedContext.delete(t)
+        updateDatabase()
+    }
     
     // MARK: - Helping methods
+    func format(Date date:Date?) -> String?{
+        if let d = date{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            return formatter.string(from: d)
+        }
+        return "N/A"
+    }
     private func updateDatabase()
     {
         do

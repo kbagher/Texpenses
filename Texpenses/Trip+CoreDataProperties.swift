@@ -2,7 +2,7 @@
 //  Trip+CoreDataProperties.swift
 //  Texpenses
 //
-//  Created by Kassem Bagher on 28/9/17.
+//  Created by Kassem Bagher on 29/9/17.
 //  Copyright © 2017 Kassem Bagher. All rights reserved.
 //
 
@@ -16,14 +16,14 @@ extension Trip {
         return NSFetchRequest<Trip>(entityName: "Trip")
     }
 
+    @NSManaged public var country: String?
+    @NSManaged public var countryCode: String?
+    @NSManaged public var currentExchangeRate: Double
     @NSManaged public var endDate: NSDate?
     @NSManaged public var startDate: NSDate?
-    @NSManaged public var countryCode: String?
-    @NSManaged public var country: String?
-    @NSManaged public var currentExchangeRate: Double
+    @NSManaged public var baseCurrency: Currency?
     @NSManaged public var currency: Currency?
     @NSManaged public var transactions: NSOrderedSet?
-    @NSManaged public var baseCurrency: Currency?
 
 }
 
