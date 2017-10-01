@@ -82,7 +82,12 @@ class SummaryCollectionViewController: UICollectionViewController {
             date.text = sum.fromDate + " - " + sum.toDate
             baseCurrency.text = sum.baseCurrency
             baseExpenses.text = sum.baseExpenses
-            exchangeRate.text = "Average exchange rate 1 " + sum.countryCurrency + " = " + sum.exchangeRate + " " + sum.baseCurrency
+            if sum.countryExpenses == "0.0"{
+                exchangeRate.text = "Average exchange rate (N/A)"
+            }
+            else{
+                exchangeRate.text = "Average exchange rate 1 " + sum.countryCurrency + " = " + sum.exchangeRate + " " + sum.baseCurrency
+            }
         }
 
         // Configure the cell

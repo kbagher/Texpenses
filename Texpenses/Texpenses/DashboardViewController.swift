@@ -26,6 +26,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     @IBOutlet weak var tripCurrency: UILabel!
     let model = Model.sharedInstance
     let location = LocationService.sharedInstance
+    let web = WebServices.sharedInstance
     var currentPlaceMark: CLPlacemark?
     var appDataReady = false
     
@@ -37,19 +38,23 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         setStyleFor(view: exchangeRate!)
         setStyleFor(view: expenses!)
         setTextfieldStyleFor(textField: rate!)
-        LocationService.sharedInstance.delegate = self
-        WebServices.sharedInstance.delegate=self
         rate.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        location.delegate = self
+        web.delegate=self
+        
         isAppDataReady()
         registerNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        location.delegate = nil
+        web.delegate = nil
         unregisterNotifications()
     }
     
@@ -60,10 +65,14 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
 
     // MARK: - Delegates
     // MARK: Location
+    func didChangeAuthorization(status: CLAuthorizationStatus) {
+        isAppDataReady()
+    }
+    
     func tracingLocation(currentLocation: CLLocation) {
         print("got location")
         isAppDataReady()
-        LocationService.sharedInstance.stopUpdatingLocation()
+        location.stopUpdatingLocation()
     }
     
     func tracingLocationDidFailWithError(error: NSError) {
@@ -73,7 +82,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     func didReverseGeocode(name: String, country: String, countryCode: String, city: String, timeZone: TimeZone) {
         countryName.text = country
         cityName.text = city
-        if let c = Model.sharedInstance.getCurrencyWithCountry(code: countryCode){
+        if let c = model.getCurrencyWithCountry(code: countryCode){
             currecnyName.text = c.name
             currecnySymbol.text = c.symbol
         }
@@ -100,16 +109,25 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     // MARK: Currencies Update
     
     func didRetrieveCurrenciesError(error: NSError) {
+        hideActivityView()
         let alert = UIAlertController(title: "Error", message: "Unable to retrieve currencies from server", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func didRetrieveCurrencies(numOfCurrencies: Int) {
+        hideActivityView()
         isAppDataReady()
     }
     
     // MARK: - Helping Methods
+    
+    func hideActivityView(){
+        DispatchQueue.main.async {
+            LoadingIndicatorView.hide()
+        }
+    }
+    
     func createNewTrip(){
         let alert = UIAlertController(title: "Create a new trip", message: "It looks like you don't have any active trip. Would you like to create one?", preferredStyle: UIAlertControllerStyle.alert);
         alert.addAction(UIAlertAction(title: "No 🙁", style: UIAlertActionStyle.default, handler: nil));
@@ -120,7 +138,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
             let currency = self.model.getCurrencyWithCountry(code: code!)
             let date = Date()
             let _ = self.model.addTrip(countryName: name!, countryCode: code!, startDate: date, currency: currency!)
-            self.displayDashboardInfo()
+            self.isAppDataReady()
         }));
         self.present(alert, animated: true, completion: nil);
     }
@@ -146,10 +164,26 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     }
 
 
+    func askForLocationAuthorisation() {
+        let alert = UIAlertController(title: "Location Service", message: "We are asking for the location service for you to be able to track your expenses.\nDon't worry we won't share or collect your information 🙈🙉🙊\n\nPlease click on 'Allow' in the next alert", preferredStyle: UIAlertControllerStyle.alert);
+        alert.addAction(UIAlertAction(title: "Ok, i'll click on 'Allow'", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction) in
+            self.location.requestAuthorization()
+        }));
+        present(alert, animated: true, completion: nil);
+    }
+
     func isAppDataReady() {
+        
+        // check if location service is authorised
+        if !location.isLocationServiceAuthorised(){
+            askForLocationAuthorisation()
+            return
+        }
+
         // Check if there any currencies in the database
-        if Model.sharedInstance.getCurrencies()?.count == 0{
-            WebServices.sharedInstance.getCurrencies()
+        if model.getCurrencies() == nil{
+            LoadingIndicatorView.show("Optimising App Data ✌️")
+            web.getCurrencies()
             print("getting currencies")
             return
         }
@@ -159,7 +193,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
             return
         }
         
-        if let trip = Model.sharedInstance.getCurrentActiveTrip(){
+        if let trip = model.getCurrentActiveTrip(){
             // check i the current trip location is similar to the user's location or not
             // if not then close the current trip and call this method again to create a new trip
             if let loc = location.currentLocation{
@@ -167,7 +201,9 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
                     if trip.countryCode == currentPlaceMark?.isoCountryCode {
                         print("Same country")
                         appDataReady = true
-                        displayDashboardInfo()
+                        DispatchQueue.main.async(execute: { 
+                            self.displayDashboardInfo()
+                        })
                         return
                     }
                     else{
@@ -223,7 +259,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         
         let t = model.getCurrentActiveTrip()
         
-        WebServices.sharedInstance.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
+        web.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
         
         // location
         countryName.text =  currentPlaceMark?.country

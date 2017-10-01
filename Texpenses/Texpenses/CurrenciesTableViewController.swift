@@ -11,7 +11,7 @@ import UIKit
 class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
 
     let model = Model.sharedInstance
-    let currencies = Model.sharedInstance.getCurrencies()
+    var currencies = Model.sharedInstance.getCurrencies()
     let web = WebServices.sharedInstance
     
     var oldSelectedCell = 0
@@ -29,10 +29,18 @@ class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         if currencies == nil{
+            LoadingIndicatorView.show("Fetching Currencies From Server")
             web.getCurrencies()
+        }
+        else{
+            loadCurrencies()
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        web.delegate = nil
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,16 +48,31 @@ class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
 
     // MARK: - Helping methods
     
-    func didRetrieveExchangeRate(rate: Double) {
-    }
-    func didRetrieveExchangeRateError(error: NSError) {
-        
-    }
-    
-    func didRetrieveCurrencies(numOfCurrencies: Int){
+    func refreshTable(){
         tableView.reloadData()
     }
+    
+    func loadCurrencies(){
+        currencies = model.getCurrencies()
+        DispatchQueue.main.async(execute: {
+            self.refreshTable()
+        })
+    }
+    
+    func hideActivityView(){
+        DispatchQueue.main.async {
+            LoadingIndicatorView.hide()
+        }
+    }
+
+    // MARK: Delegates
+    func didRetrieveCurrencies(numOfCurrencies: Int){
+        print("got currencies")
+        hideActivityView()
+        loadCurrencies()
+    }
     func didRetrieveCurrenciesError(error: NSError){
+        hideActivityView()
         let alert = UIAlertController(title: "Error", message: "Cannot retrieve currencies from the server 🙁", preferredStyle: UIAlertControllerStyle.alert);
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
         present(alert, animated: true, completion: nil)

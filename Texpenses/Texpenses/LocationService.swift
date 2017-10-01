@@ -6,6 +6,7 @@ import CoreLocation
 @objc protocol LocationServiceDelegate {
     func tracingLocation(currentLocation: CLLocation)
     func tracingLocationDidFailWithError(error: NSError)
+    @objc optional func didChangeAuthorization(status: CLAuthorizationStatus)
     @objc optional func didReverseGeocode(name:String,country:String,countryCode:String,city:String,timeZone:TimeZone)
     @objc optional func didReverseGeocode(place:CLPlacemark)
 }
@@ -26,16 +27,37 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             return
         }
         
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            // you have 2 choice
-            // 1. requestAlwaysAuthorization
-            // 2. requestWhenInUseAuthorization
-            locationManager.requestWhenInUseAuthorization()
-        }
+//        if CLLocationManager.authorizationStatus() == .notDetermined {
+//            // you have 2 choice
+//            // 1. requestAlwaysAuthorization
+//            // 2. requestWhenInUseAuthorization
+//            locationManager.requestWhenInUseAuthorization()
+//        }
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest // The accuracy of the location data
         locationManager.distanceFilter = 150 // The minimum distance (measured in meters) a device must move horizontally before an update event is generated.
         locationManager.delegate = self
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        guard let delegate = self.delegate else {
+            return
+        }
+        
+        delegate.didChangeAuthorization!(status: status)
+    }
+    
+    func requestAuthorization(){
+        guard let locationManager = self.locationManager else {
+            return
+        }
+        
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func isLocationServiceAuthorised() -> Bool{
+        return CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse
     }
     
     func startUpdatingLocation() {
