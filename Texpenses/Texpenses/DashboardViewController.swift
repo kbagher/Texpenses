@@ -34,6 +34,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     let web = WebServices.sharedInstance
     var currentPlaceMark: CLPlacemark?
     var appDataReady = false
+    var currencyUpdated = false
     
     // MARK: - View lifecycle
     override func viewDidLoad() {
@@ -54,7 +55,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         
         // Set delegates before displaying the view
         location.delegate = self
-        web.delegate=self
+        web.delegate = self
         
         // check if all required data are loaded
         isAppDataReady()
@@ -136,10 +137,14 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         if let t = model.getCurrentActiveTrip(){
             // update current active trip's latest exchange rate
             model.updateTrip(t, ExchangeRate: rate)
+            currencyUpdated = true
             isAppDataReady()
         }
     }
 
+    func didRetrieveExchangeRateError(error: NSError) {
+        
+    }
 
     // MARK: Currencies Update
     
@@ -276,6 +281,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
                     if trip.countryCode == currentPlaceMark?.isoCountryCode {
                         print("Same country")
                         appDataReady = true
+                        location.stopUpdatingLocation()
                         DispatchQueue.main.async(execute: { 
                             self.displayDashboardInfo()
                         })
@@ -316,6 +322,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
                 }
             }
             else{
+                
                 location.startUpdatingLocation()
                 return
             }
@@ -340,7 +347,9 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         let t = model.getCurrentActiveTrip()
         
         // fetch updated exchange rate from server
-        web.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
+        if !currencyUpdated{
+            web.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
+        }
         
         // country and city information
         countryName.text =  currentPlaceMark?.country

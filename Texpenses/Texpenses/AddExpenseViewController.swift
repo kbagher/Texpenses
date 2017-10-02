@@ -31,13 +31,13 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
         expenseTitle.addGestureRecognizer(tap)
         
         currency.text = model.getCurrentActiveTrip()?.currency?.symbol
-        
-        location.delegate = self
-        location.startUpdatingLocation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        location.delegate = self
+        location.stopUpdatingLocation()
+        location.startUpdatingLocation()
         registerNotifications()
     }
     
@@ -177,7 +177,7 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
         location.stopUpdatingLocation()
     }
     func didUpdateLocationFailWithError(error: NSError) {
-        
+        print("NO COOL")
     }
     
     // MARK: - Keyboard visibility

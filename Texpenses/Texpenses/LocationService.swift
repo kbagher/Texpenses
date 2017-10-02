@@ -13,7 +13,7 @@ import CoreLocation
 class LocationService: NSObject, CLLocationManagerDelegate {
     
     static let sharedInstance = LocationService()
-    var locationManager: CLLocationManager?
+    private var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     var delegate: LocationServiceDelegate?
     let locationGeocoder: CLGeocoder = CLGeocoder()
@@ -53,6 +53,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func startUpdatingLocation() {
+        print("called")
         self.locationManager?.startUpdatingLocation()
     }
     
@@ -61,14 +62,16 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("---- updated")
         guard let location = locations.last else {
             return
         }
         
         // singleton for get last(current) location
         self.currentLocation = location
-        
+
         guard let delegate = self.delegate else {
+            print("no delegate")
             return
         }
         

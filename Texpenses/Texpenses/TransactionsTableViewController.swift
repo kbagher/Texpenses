@@ -37,7 +37,9 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         // display master and details on iPad
         self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
         self.splitViewController?.delegate = self
-        splitViewController?.presentsWithGesture = false
+        self.splitViewController?.presentsWithGesture = false
+        self.tableView.allowsSelectionDuringEditing = false
+
         
         tableView.tableFooterView = UIView()
     }
@@ -76,8 +78,10 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         return true
     }
   
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
 
-    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
