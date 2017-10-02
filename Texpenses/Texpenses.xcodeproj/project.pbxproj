@@ -20,7 +20,7 @@
 		1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */; };
 		135653401F7A2A28001DCD35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356533F1F7A2A28001DCD35 /* Model.swift */; };
 		135653641F7A4C54001DCD35 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653631F7A4C54001DCD35 /* WebServices.swift */; };
-		13632A2B1F80DBAD00031391 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13632A2A1F80DBAD00031391 /* LoadingIndicatorView.swift */; };
+		13632A2B1F80DBAD00031391 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13632A2A1F80DBAD00031391 /* LoadingView.swift */; };
 		136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */; };
 		136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */; };
 		136D0BA71F4D062A00DEEB3B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */; };
@@ -62,7 +62,7 @@
 		1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelDatabase.xcdatamodel; sourceTree = "<group>"; };
 		1356533F1F7A2A28001DCD35 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		135653631F7A4C54001DCD35 /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
-		13632A2A1F80DBAD00031391 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		13632A2A1F80DBAD00031391 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewController.swift; sourceTree = "<group>"; };
 		136D0BA61F4D062A00DEEB3B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				135653631F7A4C54001DCD35 /* WebServices.swift */,
 				132BEC791F7B3AA20070AE34 /* LocationService.swift */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
-				13632A2A1F80DBAD00031391 /* LoadingIndicatorView.swift */,
+				13632A2A1F80DBAD00031391 /* LoadingView.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 				136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */,
 				136D0BB01F4E483B00DEEB3B /* Summary.swift in Sources */,
 				132BEC781F7B34BC0070AE34 /* Currency+CoreDataProperties.swift in Sources */,
-				13632A2B1F80DBAD00031391 /* LoadingIndicatorView.swift in Sources */,
+				13632A2B1F80DBAD00031391 /* LoadingView.swift in Sources */,
 				136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */,
 				1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,

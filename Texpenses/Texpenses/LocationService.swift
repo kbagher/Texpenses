@@ -4,10 +4,9 @@ import Foundation
 import CoreLocation
 
 @objc protocol LocationServiceDelegate {
-    func tracingLocation(currentLocation: CLLocation)
-    func tracingLocationDidFailWithError(error: NSError)
+    func didUpdateLocation(currentLocation: CLLocation)
+    func didUpdateLocationFailWithError(error: NSError)
     @objc optional func didChangeAuthorization(status: CLAuthorizationStatus)
-    @objc optional func didReverseGeocode(name:String,country:String,countryCode:String,city:String,timeZone:TimeZone)
     @objc optional func didReverseGeocode(place:CLPlacemark)
 }
 
@@ -17,25 +16,19 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     var delegate: LocationServiceDelegate?
-    let ceo: CLGeocoder = CLGeocoder()
+    let locationGeocoder: CLGeocoder = CLGeocoder()
     
     
     override init() {
         super.init()
+        
         self.locationManager = CLLocationManager()
+        
         guard let locationManager = self.locationManager else {
             return
         }
-        
-//        if CLLocationManager.authorizationStatus() == .notDetermined {
-//            // you have 2 choice
-//            // 1. requestAlwaysAuthorization
-//            // 2. requestWhenInUseAuthorization
-//            locationManager.requestWhenInUseAuthorization()
-//        }
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest // The accuracy of the location data
-        locationManager.distanceFilter = 150 // The minimum distance (measured in meters) a device must move horizontally before an update event is generated.
+        locationManager.distanceFilter = 150
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
     }
     
@@ -52,7 +45,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         guard let locationManager = self.locationManager else {
             return
         }
-        
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -61,12 +53,10 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func startUpdatingLocation() {
-        print("Starting Location Updates")
         self.locationManager?.startUpdatingLocation()
     }
     
     func stopUpdatingLocation() {
-        print("Stop Location Updates")
         self.locationManager?.stopUpdatingLocation()
     }
     
@@ -78,8 +68,11 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         // singleton for get last(current) location
         self.currentLocation = location
         
-        // use for real time update location
-        updateLocation(currentLocation: location)
+        guard let delegate = self.delegate else {
+            return
+        }
+        
+        delegate.didUpdateLocation(currentLocation: location)
         
     }
     
@@ -88,28 +81,18 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         
     }
     
-    // Private function
-    private func updateLocation(currentLocation: CLLocation){
-        
-        guard let delegate = self.delegate else {
-            return
-        }
-        
-        delegate.tracingLocation(currentLocation: currentLocation)
-    }
-    
     private func updateLocationDidFailWithError(error: NSError) {
         
         guard let delegate = self.delegate else {
             return
         }
         
-        delegate.tracingLocationDidFailWithError(error: error)
+        delegate.didUpdateLocationFailWithError(error: error)
     }
-
+    
     func getReversedGeocodeWith(locaiton:CLLocation){
         
-        ceo.reverseGeocodeLocation(locaiton, completionHandler:
+        locationGeocoder.reverseGeocodeLocation(locaiton, completionHandler:
             {(placemarks, error) in
                 
                 guard let delegate = self.delegate else {
@@ -126,7 +109,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                     let pm = placemarks![0]
                     print("reversed")
                     delegate.didReverseGeocode!(place: pm)
-//                    delegate.didReverseGeocode!(name: pm.name!, country: pm.country!, countryCode: pm.isoCountryCode!,city: pm.locality!, timeZone: pm.timeZone!)
                 }}
         )
     }

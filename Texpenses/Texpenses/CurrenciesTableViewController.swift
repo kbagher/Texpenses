@@ -29,7 +29,7 @@ class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         if currencies == nil{
-            LoadingIndicatorView.show("Fetching Currencies From Server")
+            LoadingView.showIndicator("Fetching Currencies From Server")
             web.getCurrencies()
         }
         else{
@@ -61,7 +61,7 @@ class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
     
     func hideActivityView(){
         DispatchQueue.main.async {
-            LoadingIndicatorView.hide()
+            LoadingView.hideIndicator()
         }
     }
 

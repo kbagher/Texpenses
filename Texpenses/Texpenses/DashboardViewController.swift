@@ -11,6 +11,9 @@ import CoreLocation
 
 class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesDelegate,LocationServiceDelegate{
     
+    // MARK: - Class Variables
+    
+    // MARK: Interface
     @IBOutlet weak var currency: UIView?
     @IBOutlet weak var expenses: UIView?
     @IBOutlet weak var exchangeRate: UIView?
@@ -24,6 +27,8 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     @IBOutlet weak var baseCurranceValue: UILabel!
     @IBOutlet weak var baseCurrency: UILabel!
     @IBOutlet weak var tripCurrency: UILabel!
+    
+    // MARK: Variables
     let model = Model.sharedInstance
     let location = LocationService.sharedInstance
     let web = WebServices.sharedInstance
@@ -33,11 +38,14 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // View items styling
         setStyleFor(view: currency!)
         setStyleFor(view: exchangeRate!)
         setStyleFor(view: expenses!)
         setTextfieldStyleFor(textField: rate!)
+
+        // Exchange rate calculator textfield delegate
         rate.delegate = self
     }
     
@@ -69,13 +77,13 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         isAppDataReady()
     }
     
-    func tracingLocation(currentLocation: CLLocation) {
+    func didUpdateLocation(currentLocation: CLLocation) {
         print("got location")
         isAppDataReady()
         location.stopUpdatingLocation()
     }
     
-    func tracingLocationDidFailWithError(error: NSError) {
+    func didUpdateLocationFailWithError(error: NSError) {
         print(error.description)
     }
 
@@ -124,7 +132,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     
     func hideActivityView(){
         DispatchQueue.main.async {
-            LoadingIndicatorView.hide()
+            LoadingView.hideIndicator()
         }
     }
     
@@ -182,7 +190,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
 
         // Check if there any currencies in the database
         if model.getCurrencies() == nil{
-            LoadingIndicatorView.show("Optimising App Data ✌️")
+            LoadingView.showIndicator("Optimising App Data ✌️")
             web.getCurrencies()
             print("getting currencies")
             return

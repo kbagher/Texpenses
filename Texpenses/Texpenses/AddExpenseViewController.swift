@@ -161,7 +161,7 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
     }
     
     
-    func tracingLocation(currentLocation: CLLocation) {
+    func didUpdateLocation(currentLocation: CLLocation) {
         let center = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
@@ -176,7 +176,7 @@ class AddExpenseViewController: UIViewController,UITextFieldDelegate,LocationSer
         
         location.stopUpdatingLocation()
     }
-    func tracingLocationDidFailWithError(error: NSError) {
+    func didUpdateLocationFailWithError(error: NSError) {
         
     }
     
