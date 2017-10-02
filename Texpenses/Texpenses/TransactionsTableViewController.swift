@@ -79,7 +79,14 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     }
   
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+            model.deleteTransaction(transactions[indexPath.item])
+            transactions.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+
+            tableView.reloadData()
+        }
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

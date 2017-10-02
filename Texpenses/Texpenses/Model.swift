@@ -174,6 +174,11 @@ class Model {
         return true
     }
     
+    func deleteTransaction(_ t:Transaction){
+        managedContext.delete(t)
+        updateDatabase()
+    }
+    
     func getTransactions() -> [Transaction]?
     {
         do
