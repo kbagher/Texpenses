@@ -12,6 +12,8 @@ private let reuseIdentifier = "Cell"
 
 class SummaryCollectionViewController: UICollectionViewController {
 
+    // MARK: Class Variables
+    
     var summaries: [Summary]?
     let model = Model.sharedInstance
 
@@ -22,11 +24,13 @@ class SummaryCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        // Do any additional setup after loading the view.
+        
+        // Retrieve trips summaries
         getSummaries()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        // refresh summaries
         getSummaries()
     }
     
@@ -35,23 +39,12 @@ class SummaryCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -65,7 +58,7 @@ class SummaryCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "summaryCell", for: indexPath)
 
-        
+        // Retrieve UI labels Reference
         let countryName:UILabel = cell.viewWithTag(100)! as! UILabel
         let date:UILabel = cell.viewWithTag(200)! as! UILabel
         let baseCurrency:UILabel = cell.viewWithTag(300)! as! UILabel
@@ -74,7 +67,7 @@ class SummaryCollectionViewController: UICollectionViewController {
         let countryExpenses:UILabel = cell.viewWithTag(600)! as! UILabel
         let exchangeRate:UILabel = cell.viewWithTag(700)! as! UILabel
         
-
+        // Grap trip summary object
         if let sum = summaries?[indexPath.item]{
             countryName.text = sum.countryName
             countryExpenses.text = sum.countryExpenses
@@ -83,6 +76,7 @@ class SummaryCollectionViewController: UICollectionViewController {
             baseCurrency.text = sum.baseCurrency
             baseExpenses.text = sum.baseExpenses
             if sum.countryExpenses == "0.0"{
+                // No expenses available for the trip
                 exchangeRate.text = "Average exchange rate (N/A)"
             }
             else{
@@ -90,19 +84,31 @@ class SummaryCollectionViewController: UICollectionViewController {
             }
         }
 
-        // Configure the cell
+        // Set cell style
+        setStyleForCell(cell: cell)
+        
+        return cell
+    }
+
+    // MARK: - Helping methods
+    
+    /// Style UiCollectionViewCell
+    ///
+    /// This will style the UiCollectionViewCell to have rounded corners and light gray border
+    ///
+    /// - Parameter tf: UITextField to style
+    func setStyleForCell(cell: UICollectionViewCell){
         cell.contentView.layer.masksToBounds = true
         cell.contentView.layer.borderWidth = 1
         cell.contentView.layer.cornerRadius = 12
         cell.contentView.layer.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0).cgColor
         cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
-    
-        return cell
     }
-
-    // MARK: - Helping methods
+    /// Retrieve trips summaries from database
     func getSummaries(){
+        // Sort by latest
         summaries = model.getTripsSummaries()?.reversed()
+        
         collectionView?.reloadData()
     }
     
