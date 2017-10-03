@@ -99,7 +99,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		132BEC911F7CB0550070AE34 /* Core Data */ = {
+		132BEC911F7CB0550070AE34 /* Core Data Models */ = {
 			isa = PBXGroup;
 			children = (
 				1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */,
@@ -113,7 +113,7 @@
 				132BEC761F7B34BC0070AE34 /* Currency+CoreDataProperties.swift */,
 				1356533F1F7A2A28001DCD35 /* Model.swift */,
 			);
-			name = "Core Data";
+			name = "Core Data Models";
 			sourceTree = "<group>";
 		};
 		135083681F515C2800F438F7 /* TexpensesUITests */ = {
@@ -142,7 +142,7 @@
 		135083741F515F1900F438F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				132BEC911F7CB0550070AE34 /* Core Data */,
+				132BEC911F7CB0550070AE34 /* Core Data Models */,
 				135653631F7A4C54001DCD35 /* WebServices.swift */,
 				132BEC791F7B3AA20070AE34 /* LocationService.swift */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,

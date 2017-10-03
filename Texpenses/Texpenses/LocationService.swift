@@ -1,4 +1,10 @@
-
+//
+//  LocationService
+//  Texpenses
+//
+//  Created by Khaled Dowaid on 26/9/17.
+//  Copyright © 2017 Khaled Dowaid. All rights reserved.
+//
 
 import Foundation
 import CoreLocation
