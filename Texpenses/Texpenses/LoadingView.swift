@@ -1,10 +1,5 @@
-//
-//  LoadingIndicatorView.swift
-//  SwiftLoadingIndicator
-//
-//  Created by Vince Chan on 12/2/15.
-//  Copyright © 2015 Vince Chan. All rights reserved.
-//
+
+
 import UIKit
 
 class LoadingView {
