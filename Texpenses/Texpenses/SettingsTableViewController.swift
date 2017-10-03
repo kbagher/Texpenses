@@ -53,6 +53,7 @@ class SettingsTableViewController: UITableViewController,MFMailComposeViewContro
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Handle user tap on settings table
         switch indexPath.section {
         case 0:
             performSegue(withIdentifier: "showCurrencies", sender: nil) // currency selection
