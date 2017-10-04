@@ -47,6 +47,7 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
         // Show tabbar before
         self.tabBarController?.tabBar.isHidden = false
         updateTransactions()
+        print(transactions.count)
         tableView.reloadData()
     }
     
@@ -71,17 +72,17 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            
-            // delete from database
-            model.deleteTransaction(transactions[indexPath.item])
-            
-            // delete from array
-            transactions.remove(at: indexPath.row)
-            
-            // delete from table
-            tableView.deleteRows(at: [indexPath], with: .left)
-            
-            tableView.reloadData()
+
+            if let _ = model.getCurrentActiveTrip(){
+                // Delete transaction from database
+                model.deleteTransaction(transactions[indexPath.item])
+                
+                // remove transaction from array
+                transactions.remove(at: indexPath.row)
+                
+                // remove transaction from table
+                tableView.deleteRows(at: [indexPath], with: .left)
+            }
         }
     }
     
@@ -120,9 +121,9 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
     
     /// Retrieve transactions from database
     func updateTransactions(){
-        if let t = model.getCurrentActiveTrip(){
-            if let tr = t.transactions{
-                transactions = tr.array as! [Transaction]
+        if let trip = model.getCurrentActiveTrip(){
+            if let trs = trip.transactions{
+                transactions = trs.array as! [Transaction]
                 transactions = transactions.reversed()
             }
         }

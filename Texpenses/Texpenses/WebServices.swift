@@ -55,6 +55,13 @@ class WebServices {
     ///   - toCurrency: country's currency
     func exchangeRateWith(BaseCurrency bc:Currency, toCurrency:Currency) {
         
+        // check if it's the same currency
+        if bc.name! == toCurrency.name! {
+            // Send exhcnage rate of 1.0 to the delegate
+            self.delegate?.didRetrieveExchangeRate!(rate: 1.0)
+            return
+        }
+        
         // create new requets with REST API URL
         var request = URLRequest(url: URL(string: "https://currencyconverter.p.mashape.com/?from=\(toCurrency.symbol!)&from_amount=1&to=\(bc.symbol!)")!)
         // API Key header

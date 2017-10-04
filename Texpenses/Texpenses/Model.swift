@@ -193,8 +193,12 @@ class Model {
     ///
     /// - Parameter t: transaction object to be deleted
     func deleteTransaction(_ t:Transaction){
-        managedContext.delete(t)
-        updateDatabase()
+        if let trip = t.trip{
+           trip.removeFromTransactions(t)
+            updateDatabase()
+        }
+//        managedContext.delete(t)
+//        updateDatabase()
     }
     
     // MARK: - Trips

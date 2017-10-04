@@ -135,6 +135,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     /// LocationServiceDelegate -> didRetrieveExchangeRate
     func didRetrieveExchangeRate(rate: Double) {
         if let t = model.getCurrentActiveTrip(){
+            hideActivityView()
             // update current active trip's latest exchange rate
             model.updateTrip(t, ExchangeRate: rate)
             currencyUpdated = true
@@ -143,7 +144,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     }
 
     func didRetrieveExchangeRateError(error: NSError) {
-        
+        hideActivityView()
     }
 
     // MARK: Currencies Update
@@ -282,6 +283,12 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
                         print("Same country")
                         appDataReady = true
                         location.stopUpdatingLocation()
+                        if trip.currentExchangeRate == 0.0{
+                            LoadingView.showIndicator("Optimising Exchange Rate 💰")
+                            web.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: trip.currency!)
+                            print("getting exchange rate")
+                            return
+                        }
                         DispatchQueue.main.async(execute: { 
                             self.displayDashboardInfo()
                         })

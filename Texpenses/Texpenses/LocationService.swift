@@ -151,6 +151,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                 if (error != nil)
                 {
                     print("reverse geodcode fail: \(error!.localizedDescription)")
+                    return
                 }
                 let pm = placemarks! as [CLPlacemark]
                 
