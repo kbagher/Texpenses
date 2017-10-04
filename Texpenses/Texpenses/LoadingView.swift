@@ -18,6 +18,8 @@ class LoadingView {
     
     // MARK: - View design and presentation
     
+    
+    /// Add observer to detect device rotation
     private static func addRotationObserver(){
         NotificationCenter.default.addObserver(
             self, selector:
@@ -26,6 +28,7 @@ class LoadingView {
             object: nil)
     }
     
+    /// Adds an overlay view (dimmed background)
     private static func addOverlayView(){
         // Create the overlay
         if let overlay = overlayView, let target = targetView{
@@ -37,6 +40,7 @@ class LoadingView {
         }
     }
     
+    /// Adds Activity indicator and label on the overlay view
     static private func addActivityAndLabel(){
         if let overlay = overlayView{
             let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
@@ -54,6 +58,7 @@ class LoadingView {
         }
     }
     
+    /// Display the activity view
     static private func displayView(){
         if let overlay = overlayView{
             UIView.beginAnimations(nil, context: nil)
@@ -65,6 +70,10 @@ class LoadingView {
     
     // MARK: - Show and hide activity indicator view
     
+    
+    /// Display the activity view on the main app view
+    ///
+    /// - Parameter loadingText: Text to be displayed
     static func showIndicator(_ loadingText: String?) {
         
         guard let overlayTarget = UIApplication.shared.keyWindow else {
@@ -92,6 +101,8 @@ class LoadingView {
         displayView()
     }
 
+    
+    /// Hides activity view
     static func hideIndicator() {
         if overlayView != nil {
             
