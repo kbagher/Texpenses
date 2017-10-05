@@ -51,7 +51,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
         setStyleFor(view: exchangeRate!)
         setStyleFor(view: expenses!)
         setTextfieldStyleFor(textField: rate!)
-
+        
         // Exchange rate calculator textfield delegate
         rate.delegate = self
     }
@@ -522,7 +522,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
         tf.layer.borderWidth = 1
         tf.layer.cornerRadius = 7
         tf.layer.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:1.0).cgColor
-        tf.layer.borderColor = UIColor.lightGray.cgColor
+        tf.layer.borderColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.00).cgColor
     }
     
     /// Style view
