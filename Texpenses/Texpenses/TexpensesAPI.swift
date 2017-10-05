@@ -36,15 +36,16 @@ import Foundation
     @objc optional func didRetrieveCurrenciesError(error: NSError)
 }
 
-
-class WebServices {
+class TexpensesAPI {
     
     // MARK: - Class Variables
-    static let sharedInstance = WebServices()
+    static let sharedInstance = TexpensesAPI()
     var delegate: WebServicesDelegate?
     private init(){}
     let session = URLSession.shared
     
+    
+    // MARK: - API Functions
     
     /// Gets exchange rate from server
     ///
@@ -70,19 +71,16 @@ class WebServices {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         // URL request task
-        let task = session.dataTask(with: request, completionHandler: {data, response, downloadError in
+        let task = session.dataTask(with: request, completionHandler: {data, response, error in
             
             // Request error
-            if let error = downloadError
+            if let er = error
             {
-                print("\(String(describing: data)) \n data")
-                print("\(String(describing: response)) \n response")
-                print("\(error)\n error")
-                self.delegate?.didRetrieveCurrenciesError!(error: error as NSError)
+                self.delegate?.didRetrieveCurrenciesError!(error: er as NSError)
             }
             else
             {
-                // holds the request results
+                // holds the response
                 let parsedResult: Any!
                 do
                 {
@@ -120,19 +118,16 @@ class WebServices {
         let request = URLRequest(url: URL(string: "http://currencyconverter.kund.nu/api/availablecurrencies/")!)
         
         // URL request task
-        let task = session.dataTask(with: request, completionHandler: {data, response, downloadError in
+        let task = session.dataTask(with: request, completionHandler: {data, response, error in
             
             // Request error
-            if let error = downloadError
+            if let er = error
             {
-                print("\(String(describing: data)) \n data")
-                print("\(String(describing: response)) \n response")
-                print("\(error)\n error")
-                self.delegate?.didRetrieveCurrenciesError!(error: error as NSError)
+                self.delegate?.didRetrieveCurrenciesError!(error: er as NSError)
             }
             else
             {
-                // holds the request results
+                // holds the response
                 let parsedResult: Any!
                 do
                 {
@@ -157,7 +152,11 @@ class WebServices {
                         name = name.replacingOccurrences(of: "  ", with: " ")
                         
                         // Add currency to the database
-                        Model.sharedInstance.addCurrency(name: name, symbol: symbol)
+                        let result = Model.sharedInstance.addCurrency(name: name, symbol: symbol)
+                        if !result{
+                            self.delegate?.didRetrieveCurrenciesError!(error: NSError())
+                            return
+                        }
                     }
                     self.delegate?.didRetrieveCurrencies!(numOfCurrencies: results.count)
                 }

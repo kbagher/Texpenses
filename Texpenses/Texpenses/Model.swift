@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class Model {
+public class Model {
     
     // MARK: - Class Variables
     static let sharedInstance = Model()
@@ -81,10 +81,10 @@ class Model {
     /// - Parameters:
     ///   - name: Currency name (i.e. Australian Dollar)
     ///   - symbol: Currency Symbol (i.e. AUD)
-    func addCurrency(name:String,symbol:String) {
+    func addCurrency(name:String,symbol:String) -> Bool{
         
         if checkIsCurrencyExistsWith(symbol: symbol) {
-            return // currency already exists in the database
+            return false // currency already exists in the database
         }
         
         // Add the cyrrency to the database
@@ -93,7 +93,7 @@ class Model {
         currency.name = name
         currency.symbol = symbol
         
-        updateDatabase();
+        return updateDatabase();
     }
     
     
@@ -172,7 +172,12 @@ class Model {
     ///   - longitude: expense coordinate (longitude)
     ///   - locality: expense locality (city)
     ///   - locationName: expense location name
-    func addTransactionFor(Trip trip:Trip,amount:Double,title:String,latitude:Double,longitude:Double,locality:String,locationName:String)  {
+    func addTransactionFor(Trip trip:Trip,amount:Double,title:String,latitude:Double,longitude:Double,locality:String,locationName:String) -> Bool {
+        
+        guard let _ = getCurrentActiveTrip() else {
+            return false // no active trip
+        }
+        
         print("Adding transaction")
         let entity =  NSEntityDescription.entity(forEntityName: "Transaction",in:managedContext)
         let transaction = Transaction(entity: entity!,insertInto:managedContext)
@@ -186,19 +191,19 @@ class Model {
         transaction.exchangeRate = trip.currentExchangeRate
         transaction.trip = trip
         trip.addToTransactions(transaction)
-        updateDatabase()
+        
+        return updateDatabase()
     }
     
     /// Delete a transaction
     ///
     /// - Parameter t: transaction object to be deleted
-    func deleteTransaction(_ t:Transaction){
+    func deleteTransaction(_ t:Transaction) -> Bool{
         if let trip = t.trip{
            trip.removeFromTransactions(t)
-            updateDatabase()
+            return updateDatabase()
         }
-//        managedContext.delete(t)
-//        updateDatabase()
+        return false
     }
     
     // MARK: - Trips
@@ -355,8 +360,7 @@ class Model {
     
     // MARK: CRUD operations
     // Add a new trip
-    
-    
+
     /// Crates a new trip
     ///
     /// - Parameters:
@@ -364,10 +368,11 @@ class Model {
     ///   - countryCode: country's iso code (AU, SA, US, etc...)
     ///   - startDate: trip start date
     ///   - currency: trip's currency
-    func addTrip(countryName:String,countryCode:String,startDate:Date,currency:Currency){
+    func addTrip(countryName:String,countryCode:String,startDate:Date,currency:Currency) -> Bool{
+        
         if let c = getCurrentActiveTrip(), c.countryCode == countryCode{
             // avoid adding the same active trip
-            return
+            return false;
         }
 
         let entity =  NSEntityDescription.entity(forEntityName: "Trip",in:managedContext)
@@ -378,7 +383,7 @@ class Model {
         trip.startDate = startDate as NSDate
         trip.endDate = nil
         trip.baseCurrency = getPreferences()?.userCurrency
-        updateDatabase()
+        return updateDatabase()
     }
     
     
@@ -494,15 +499,17 @@ class Model {
     
     
     /// Save changes to local database
-    private func updateDatabase()
+    private func updateDatabase() -> Bool
     {
         do
         {
             try managedContext.save()
+            return true
         }
         catch let error as NSError
         {
             print("Could not save \(error), \(error.userInfo)")
+            return false
         }
     }
     

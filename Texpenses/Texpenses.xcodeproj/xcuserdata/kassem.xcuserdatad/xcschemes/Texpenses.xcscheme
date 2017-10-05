@@ -32,9 +32,29 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13C46DD01F4BA39A004FD91F"
+               BlueprintIdentifier = "135083661F515C2800F438F7"
                BuildableName = "TexpensesUITests.xctest"
                BlueprintName = "TexpensesUITests"
+               ReferencedContainer = "container:Texpenses.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13EA3E4F1F847D37003A4A6F"
+               BuildableName = "TexpensesTests.xctest"
+               BlueprintName = "TexpensesTests"
+               ReferencedContainer = "container:Texpenses.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13EA3E5D1F847DD7003A4A6F"
+               BuildableName = "TexpensesUnitTests.xctest"
+               BlueprintName = "TexpensesUnitTests"
                ReferencedContainer = "container:Texpenses.xcodeproj">
             </BuildableReference>
          </TestableReference>

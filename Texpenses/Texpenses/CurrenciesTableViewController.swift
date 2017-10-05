@@ -13,7 +13,7 @@ class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
     // MARK: - Class Variables
     let model = Model.sharedInstance
     var currencies = Model.sharedInstance.getCurrencies()
-    let web = WebServices.sharedInstance
+    let web = TexpensesAPI.sharedInstance
     var oldSelectedCell = 0
     
     

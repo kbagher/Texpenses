@@ -31,10 +31,11 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     // MARK: Variables
     let model = Model.sharedInstance
     let location = LocationService.sharedInstance
-    let web = WebServices.sharedInstance
+    let web = TexpensesAPI.sharedInstance
     var currentPlaceMark: CLPlacemark?
     var appDataReady = false
     var currencyUpdated = false
+    
     
     // MARK: - View lifecycle
     override func viewDidLoad() {

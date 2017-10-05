@@ -19,7 +19,7 @@
 		1350836A1F515C2800F438F7 /* TexpensesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135083691F515C2800F438F7 /* TexpensesUITests.swift */; };
 		1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1356531A1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld */; };
 		135653401F7A2A28001DCD35 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356533F1F7A2A28001DCD35 /* Model.swift */; };
-		135653641F7A4C54001DCD35 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653631F7A4C54001DCD35 /* WebServices.swift */; };
+		135653641F7A4C54001DCD35 /* TexpensesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135653631F7A4C54001DCD35 /* TexpensesAPI.swift */; };
 		13632A2B1F80DBAD00031391 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13632A2A1F80DBAD00031391 /* LoadingView.swift */; };
 		136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */; };
 		136D0BA51F4C62C900DEEB3B /* SummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */; };
@@ -34,10 +34,18 @@
 		13C46DCB1F4BA39A004FD91F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DC91F4BA39A004FD91F /* LaunchScreen.storyboard */; };
 		13C46DE31F4BADCE004FD91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DE21F4BADCE004FD91F /* Assets.xcassets */; };
 		13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */; };
+		13EA3E611F847DD7003A4A6F /* TexpensesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EA3E601F847DD7003A4A6F /* TexpensesUnitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		1350836C1F515C2800F438F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 13C46DB51F4BA39A004FD91F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13C46DBC1F4BA39A004FD91F;
+			remoteInfo = Texpenses;
+		};
+		13EA3E631F847DD7003A4A6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 13C46DB51F4BA39A004FD91F /* Project object */;
 			proxyType = 1;
@@ -61,7 +69,7 @@
 		1350836B1F515C2800F438F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1356531B1F7A0381001DCD35 /* TravelDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelDatabase.xcdatamodel; sourceTree = "<group>"; };
 		1356533F1F7A2A28001DCD35 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		135653631F7A4C54001DCD35 /* WebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		135653631F7A4C54001DCD35 /* TexpensesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TexpensesAPI.swift; sourceTree = "<group>"; };
 		13632A2A1F80DBAD00031391 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		136D0BA01F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		136D0BA41F4C62C900DEEB3B /* SummaryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +86,10 @@
 		13C46DCC1F4BA39A004FD91F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13C46DE21F4BADCE004FD91F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewController.swift; sourceTree = "<group>"; };
+		13EA3E4A1F847BF8003A4A6F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		13EA3E5E1F847DD7003A4A6F /* TexpensesUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TexpensesUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13EA3E601F847DD7003A4A6F /* TexpensesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexpensesUnitTests.swift; sourceTree = "<group>"; };
+		13EA3E621F847DD7003A4A6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +105,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				136D0BAC1F4D793F00DEEB3B /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13EA3E5B1F847DD7003A4A6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,12 +135,13 @@
 			name = "Core Data Models";
 			sourceTree = "<group>";
 		};
-		135083681F515C2800F438F7 /* TexpensesUITests */ = {
+		135083681F515C2800F438F7 /* UI Test */ = {
 			isa = PBXGroup;
 			children = (
 				135083691F515C2800F438F7 /* TexpensesUITests.swift */,
 				1350836B1F515C2800F438F7 /* Info.plist */,
 			);
+			name = "UI Test";
 			path = TexpensesUITests;
 			sourceTree = "<group>";
 		};
@@ -143,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				132BEC911F7CB0550070AE34 /* Core Data Models */,
-				135653631F7A4C54001DCD35 /* WebServices.swift */,
+				135653631F7A4C54001DCD35 /* TexpensesAPI.swift */,
 				132BEC791F7B3AA20070AE34 /* LocationService.swift */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
 				13632A2A1F80DBAD00031391 /* LoadingView.swift */,
@@ -163,6 +183,7 @@
 		136D0BAA1F4D793F00DEEB3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13EA3E4A1F847BF8003A4A6F /* XCTest.framework */,
 				136D0BAB1F4D793F00DEEB3B /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -172,7 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				13C46DBF1F4BA39A004FD91F /* Texpenses */,
-				135083681F515C2800F438F7 /* TexpensesUITests */,
+				135083681F515C2800F438F7 /* UI Test */,
+				13EA3E5F1F847DD7003A4A6F /* Unite Test */,
 				13C46DBE1F4BA39A004FD91F /* Products */,
 				136D0BAA1F4D793F00DEEB3B /* Frameworks */,
 			);
@@ -183,6 +205,7 @@
 			children = (
 				13C46DBD1F4BA39A004FD91F /* Texpenses.app */,
 				135083671F515C2800F438F7 /* TexpensesUITests.xctest */,
+				13EA3E5E1F847DD7003A4A6F /* TexpensesUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +221,16 @@
 				13C46DCC1F4BA39A004FD91F /* Info.plist */,
 			);
 			path = Texpenses;
+			sourceTree = "<group>";
+		};
+		13EA3E5F1F847DD7003A4A6F /* Unite Test */ = {
+			isa = PBXGroup;
+			children = (
+				13EA3E601F847DD7003A4A6F /* TexpensesUnitTests.swift */,
+				13EA3E621F847DD7003A4A6F /* Info.plist */,
+			);
+			name = "Unite Test";
+			path = TexpensesUnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +271,24 @@
 			productReference = 13C46DBD1F4BA39A004FD91F /* Texpenses.app */;
 			productType = "com.apple.product-type.application";
 		};
+		13EA3E5D1F847DD7003A4A6F /* TexpensesUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13EA3E651F847DD7003A4A6F /* Build configuration list for PBXNativeTarget "TexpensesUnitTests" */;
+			buildPhases = (
+				13EA3E5A1F847DD7003A4A6F /* Sources */,
+				13EA3E5B1F847DD7003A4A6F /* Frameworks */,
+				13EA3E5C1F847DD7003A4A6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13EA3E641F847DD7003A4A6F /* PBXTargetDependency */,
+			);
+			name = TexpensesUnitTests;
+			productName = TexpensesUnitTests;
+			productReference = 13EA3E5E1F847DD7003A4A6F /* TexpensesUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,6 +315,12 @@
 							};
 						};
 					};
+					13EA3E5D1F847DD7003A4A6F = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = D3Y95JXX6C;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13C46DBC1F4BA39A004FD91F;
+					};
 				};
 			};
 			buildConfigurationList = 13C46DB81F4BA39A004FD91F /* Build configuration list for PBXProject "Texpenses" */;
@@ -281,6 +338,7 @@
 			targets = (
 				13C46DBC1F4BA39A004FD91F /* Texpenses */,
 				135083661F515C2800F438F7 /* TexpensesUITests */,
+				13EA3E5D1F847DD7003A4A6F /* TexpensesUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -303,6 +361,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		13EA3E5C1F847DD7003A4A6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -319,7 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				136D0BA91F4D153C00DEEB3B /* CurrenciesTableViewController.swift in Sources */,
-				135653641F7A4C54001DCD35 /* WebServices.swift in Sources */,
+				135653641F7A4C54001DCD35 /* TexpensesAPI.swift in Sources */,
 				132BEC901F7CB04C0070AE34 /* Preferences+CoreDataProperties.swift in Sources */,
 				13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */,
 				136D0BA11F4C4D2B00DEEB3B /* TransactionDetailsTableViewController.swift in Sources */,
@@ -343,6 +408,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		13EA3E5A1F847DD7003A4A6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13EA3E611F847DD7003A4A6F /* TexpensesUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -350,6 +423,11 @@
 			isa = PBXTargetDependency;
 			target = 13C46DBC1F4BA39A004FD91F /* Texpenses */;
 			targetProxy = 1350836C1F515C2800F438F7 /* PBXContainerItemProxy */;
+		};
+		13EA3E641F847DD7003A4A6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13C46DBC1F4BA39A004FD91F /* Texpenses */;
+			targetProxy = 13EA3E631F847DD7003A4A6F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -520,6 +598,34 @@
 			};
 			name = Release;
 		};
+		13EA3E661F847DD7003A4A6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = D3Y95JXX6C;
+				INFOPLIST_FILE = TexpensesUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.TexpensesUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Texpenses.app/Texpenses";
+			};
+			name = Debug;
+		};
+		13EA3E671F847DD7003A4A6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = D3Y95JXX6C;
+				INFOPLIST_FILE = TexpensesUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.TexpensesUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Texpenses.app/Texpenses";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -549,6 +655,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		13EA3E651F847DD7003A4A6F /* Build configuration list for PBXNativeTarget "TexpensesUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13EA3E661F847DD7003A4A6F /* Debug */,
+				13EA3E671F847DD7003A4A6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
