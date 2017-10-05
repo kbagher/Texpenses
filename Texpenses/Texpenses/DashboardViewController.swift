@@ -532,10 +532,14 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
     ///
     /// - Parameter tf: UIView to style
     private func setStyleFor(view v:UIView) {
-        v.layer.masksToBounds = true
+        v.layer.masksToBounds = false
         v.layer.borderWidth = 1
         v.layer.cornerRadius = 12
-        v.layer.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0).cgColor
-        v.layer.borderColor = UIColor.lightGray.cgColor
+        v.layer.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00).cgColor
+        v.layer.borderColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.00).cgColor
+        v.layer.shadowColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.00).cgColor
+        v.layer.shadowRadius = 4
+        v.layer.shadowOpacity = 0.5
+        v.layer.shadowOffset = CGSize.zero
     }
 }

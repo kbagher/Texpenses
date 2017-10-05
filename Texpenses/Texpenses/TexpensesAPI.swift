@@ -45,7 +45,7 @@ class TexpensesAPI : API {
             // Request error
             if let er = error
             {
-                self.delegate?.didRetrieveCurrenciesError!(error: er as NSError)
+                self.delegate?.didRetrieveCurrenciesError?(error: er as NSError)
             }
             else
             {
@@ -59,7 +59,7 @@ class TexpensesAPI : API {
                 catch let error as NSError
                 {
                     parsedResult = nil
-                    self.delegate?.didRetrieveExchangeRateError!(error: error)
+                    self.delegate?.didRetrieveExchangeRateError?(error: error)
                 }
                 if let results = parsedResult as? NSDictionary {
                     // Extract ecchange rate from JSON
@@ -94,7 +94,7 @@ class TexpensesAPI : API {
             // Request error
             if let er = error
             {
-                self.delegate?.didRetrieveCurrenciesError!(error: er as NSError)
+                self.delegate?.didRetrieveCurrenciesError?(error: er as NSError)
             }
             else
             {
@@ -108,7 +108,7 @@ class TexpensesAPI : API {
                 catch let error as NSError
                 {
                     parsedResult = nil
-                    self.delegate?.didRetrieveCurrenciesError!(error: error)
+                    self.delegate?.didRetrieveCurrenciesError?(error: error)
                 }
                 
                 if let results = parsedResult as? NSArray {

@@ -99,12 +99,17 @@ class SummaryCollectionViewController: UICollectionViewController {
     ///
     /// - Parameter tf: UITextField to style
     func setStyleForCell(cell: UICollectionViewCell){
-        cell.contentView.layer.masksToBounds = true
+        cell.contentView.layer.masksToBounds = false
         cell.contentView.layer.borderWidth = 1
         cell.contentView.layer.cornerRadius = 12
-        cell.contentView.layer.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0).cgColor
-        cell.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        cell.contentView.layer.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00).cgColor
+        cell.contentView.layer.borderColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.00).cgColor
+        cell.contentView.layer.shadowColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.00).cgColor
+        cell.contentView.layer.shadowRadius = 10
+        cell.contentView.layer.shadowOpacity = 0.5
+        cell.contentView.layer.shadowOffset = CGSize.zero
     }
+    
     /// Retrieve trips summaries from database
     func getSummaries(){
         // Sort by latest

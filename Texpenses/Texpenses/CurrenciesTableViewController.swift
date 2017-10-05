@@ -26,6 +26,7 @@ class CurrenciesTableViewController: UITableViewController,APIDelegate {
         tableView.tableFooterView = UIView()
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         // Load currencies
         if currencies == nil{
             // from server
