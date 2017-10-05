@@ -9,17 +9,19 @@
 import XCTest
 @testable import Texpenses
 
-class TexpensesUnitTests: XCTestCase {
+class TexpensesUnitTests: XCTestCase,APIDelegate {
     
+    // Database model reference
     let model =  Model.sharedInstance
+    
+    // Currencies Test Expectation used in testGettingCurrencies()
+    var currenciesExpectation: XCTestExpectation?
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
@@ -101,5 +103,39 @@ class TexpensesUnitTests: XCTestCase {
     }
     
     
+    /// Test Getting currencies from the server
+    ///
+    /// This will simulate a web API call to retrieve the currencies from the server in the
+    /// dashboard view using dependency injection.
+    func testGettingCurrencies(){
+        
+        // Testing API to be injected in DashboardViewController
+        let testApi = TestAPI()
+        
+        // handling delegate calls in test class
+        testApi.delegate = self
+        
+        // Grap a dashboard view controller
+        let viewcontroller = DashboardViewController()
+
+        // Inject TestAPI object to be used instead of TexpensesAPI
+        viewcontroller.web = testApi
+        
+        // Expectation for number of retreived currencies mo
+        currenciesExpectation = expectation(description: "Number of currencies")
+        
+        // Call get currencies on DashboardViewController afrer injecting APi object
+        viewcontroller.getCurrencies()
+        
+        // Wait for testing API call to be completed
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+    
+    func didRetrieveCurrencies(numOfCurrencies: Int) {
+        // Test will fail if no currencies returned
+        if numOfCurrencies > 0 {
+            currenciesExpectation?.fulfill()
+        }
+    }
     
 }

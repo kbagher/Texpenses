@@ -35,6 +35,8 @@
 		13C46DE31F4BADCE004FD91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C46DE21F4BADCE004FD91F /* Assets.xcassets */; };
 		13C46DE51F4BD24E004FD91F /* TransactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C46DE41F4BD24E004FD91F /* TransactionsTableViewController.swift */; };
 		13EA3E611F847DD7003A4A6F /* TexpensesUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EA3E601F847DD7003A4A6F /* TexpensesUnitTests.swift */; };
+		13EA3E9F1F85C908003A4A6F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EA3E9E1F85C908003A4A6F /* API.swift */; };
+		13EA3EA11F85C947003A4A6F /* TestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EA3EA01F85C947003A4A6F /* TestAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		13EA3E5E1F847DD7003A4A6F /* TexpensesUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TexpensesUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13EA3E601F847DD7003A4A6F /* TexpensesUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexpensesUnitTests.swift; sourceTree = "<group>"; };
 		13EA3E621F847DD7003A4A6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13EA3E9E1F85C908003A4A6F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		13EA3EA01F85C947003A4A6F /* TestAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 			children = (
 				132BEC911F7CB0550070AE34 /* Core Data Models */,
 				135653631F7A4C54001DCD35 /* TexpensesAPI.swift */,
+				13EA3E9E1F85C908003A4A6F /* API.swift */,
 				132BEC791F7B3AA20070AE34 /* LocationService.swift */,
 				136D0BAF1F4E483B00DEEB3B /* Summary.swift */,
 				13632A2A1F80DBAD00031391 /* LoadingView.swift */,
@@ -226,6 +231,7 @@
 		13EA3E5F1F847DD7003A4A6F /* Unite Test */ = {
 			isa = PBXGroup;
 			children = (
+				13EA3EA01F85C947003A4A6F /* TestAPI.swift */,
 				13EA3E601F847DD7003A4A6F /* TexpensesUnitTests.swift */,
 				13EA3E621F847DD7003A4A6F /* Info.plist */,
 			);
@@ -398,8 +404,10 @@
 				132BEC781F7B34BC0070AE34 /* Currency+CoreDataProperties.swift in Sources */,
 				13632A2B1F80DBAD00031391 /* LoadingView.swift in Sources */,
 				136D0BE21F4EE1B400DEEB3B /* DashboardViewController.swift in Sources */,
+				13EA3E9F1F85C908003A4A6F /* API.swift in Sources */,
 				1356531C1F7A0381001DCD35 /* TravelDatabase.xcdatamodeld in Sources */,
 				13C46DC11F4BA39A004FD91F /* AppDelegate.swift in Sources */,
+				13EA3EA11F85C947003A4A6F /* TestAPI.swift in Sources */,
 				132BEC771F7B34BC0070AE34 /* Currency+CoreDataClass.swift in Sources */,
 				132BECC21F7F42630070AE34 /* Transaction+CoreDataClass.swift in Sources */,
 				132BECB81F7E4FA20070AE34 /* Trip+CoreDataClass.swift in Sources */,

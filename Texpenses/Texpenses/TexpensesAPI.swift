@@ -8,39 +8,11 @@
 
 import Foundation
 
-/// Web Service delegates
-@objc protocol WebServicesDelegate {
-    
-    /// Exchange rate retrieved successfully
-    ///
-    /// Called when the exhcnage rate is retrieved successfully from the server
-    /// - Parameter rate: exchange rate
-    @objc optional func didRetrieveExchangeRate(rate: Double)
-    /// Exchange rate is not retrieved
-    ///
-    /// Called when the the is an error while
-    /// retrieving the exchange rate from the server
-    /// - Parameter error: error object
-    @objc optional func didRetrieveExchangeRateError(error: NSError)
-    
-    /// Currencies retrieved successfully
-    ///
-    /// Called when currencies are retrieved successfully from the server
-    /// - Parameter numOfCurrencies: number of retrieved currencies
-    @objc optional func didRetrieveCurrencies(numOfCurrencies: Int)
-    /// Currencies are not retrieved
-    ///
-    /// Called when the the is an error while
-    /// retrieving currencies from the server
-    /// - Parameter error: error object
-    @objc optional func didRetrieveCurrenciesError(error: NSError)
-}
-
-class TexpensesAPI {
+class TexpensesAPI : API {
     
     // MARK: - Class Variables
     static let sharedInstance = TexpensesAPI()
-    var delegate: WebServicesDelegate?
+    var delegate: APIDelegate?
     private init(){}
     let session = URLSession.shared
     
@@ -49,11 +21,8 @@ class TexpensesAPI {
     
     /// Gets exchange rate from server
     ///
-    /// This will return the exhcnage rate from the server baseed on the
-    /// user's base currencies  and the country's currency
-    /// - Parameters:
-    ///   - bc: user's base currency
-    ///   - toCurrency: country's currency
+    /// # See Also:
+    /// API -> exchangeRateWith(BaseCurrency bc:Currency, toCurrency:Currency)
     func exchangeRateWith(BaseCurrency bc:Currency, toCurrency:Currency) {
         
         // check if it's the same currency
@@ -111,8 +80,10 @@ class TexpensesAPI {
         task.resume()
     }
     
-    
     /// Gets currencies from the server
+    ///
+    /// # See Also:
+    /// API -> getCurrencies()
     func getCurrencies(){
         // create new requets with REST API URL
         let request = URLRequest(url: URL(string: "http://currencyconverter.kund.nu/api/availablecurrencies/")!)

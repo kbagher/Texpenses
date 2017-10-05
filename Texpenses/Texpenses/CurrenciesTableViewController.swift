@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrenciesTableViewController: UITableViewController,WebServicesDelegate {
+class CurrenciesTableViewController: UITableViewController,APIDelegate {
 
     // MARK: - Class Variables
     let model = Model.sharedInstance

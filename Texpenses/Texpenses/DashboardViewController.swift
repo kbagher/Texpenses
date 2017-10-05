@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesDelegate,LocationServiceDelegate{
+class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,LocationServiceDelegate{
     
     // MARK: - Class Variables
     
@@ -31,13 +31,23 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
     // MARK: Variables
     let model = Model.sharedInstance
     let location = LocationService.sharedInstance
-    let web = TexpensesAPI.sharedInstance
+    var web : API?
     var currentPlaceMark: CLPlacemark?
     var appDataReady = false
     var currencyUpdated = false
     
     
     // MARK: - View lifecycle
+    
+    init(){
+        super.init(nibName: "DashboardViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,8 +65,12 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         super.viewWillAppear(animated)
         
         // Set delegates before displaying the view
+        if web?.delegate == nil{
+            web = TexpensesAPI.sharedInstance
+            web?.delegate = self
+        }
+
         location.delegate = self
-        web.delegate = self
         
         // check if all required data are loaded
         isAppDataReady()
@@ -73,7 +87,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
          This will insure delegate are not handled in this view once it dissapear
         */
         location.delegate = nil
-        web.delegate = nil
+        web?.delegate = nil
         
         /*
          Remove keyboard display and hide observers.
@@ -202,6 +216,12 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         self.present(alert, animated: true, completion: nil);
     }
     
+    
+    /// Get Currencies from server
+    func getCurrencies(){
+        web?.getCurrencies()
+    }
+    
     /// Close current active trip
     ///
     /// Calling this method will clode the current active trp (if available)
@@ -258,6 +278,9 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         
         // check if location service is authorised
         if !location.isLocationServiceAuthorised(){
+            DispatchQueue.main.async {
+                self.askForLocationAuthorisation()
+            }
             askForLocationAuthorisation()
             return
         }
@@ -265,13 +288,15 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         // Check if there any currencies in the database
         if model.getCurrencies() == nil{
             LoadingView.showIndicator("Optimising App Data ✌️")
-            web.getCurrencies()
+            getCurrencies()
             print("getting currencies")
             return
         }
         
         if model.getPreferences() == nil {
-            selectCurrency()
+            DispatchQueue.main.async {
+                self.selectCurrency()
+            }
             return
         }
         
@@ -286,7 +311,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
                         location.stopUpdatingLocation()
                         if trip.currentExchangeRate == 0.0{
                             LoadingView.showIndicator("Optimising Exchange Rate 💰")
-                            web.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: trip.currency!)
+                            web?.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: trip.currency!)
                             print("getting exchange rate")
                             return
                         }
@@ -356,7 +381,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,WebServicesD
         
         // fetch updated exchange rate from server
         if !currencyUpdated{
-            web.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
+            web?.exchangeRateWith(BaseCurrency: (model.getPreferences()?.userCurrency)!, toCurrency: model.getCurrencyWithCountry(code: (t?.currency?.symbol)!)!)
         }
         
         // country and city information
