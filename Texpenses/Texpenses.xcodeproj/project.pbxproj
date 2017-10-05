@@ -671,6 +671,7 @@
 				13EA3E671F847DD7003A4A6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
