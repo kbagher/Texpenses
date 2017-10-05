@@ -43,11 +43,6 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
         super.init(nibName: "DashboardViewController", bundle: nil)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -409,6 +404,11 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
             averageExchangeRate.text = "-"
         }
         
+    }
+    
+    // Used to supress error message caused by using class init()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     // MARK: - Keyboard
