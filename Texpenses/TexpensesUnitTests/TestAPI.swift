@@ -14,7 +14,7 @@ class TestAPI: API {
     func getCurrencies() {
         // Simulate api delay
         sleep(1)
-        // Simulate a return number of 10 currencies
+        // return number of 10 currencies by the server
         delegate?.didRetrieveCurrencies!(numOfCurrencies: 10)
     }
     
