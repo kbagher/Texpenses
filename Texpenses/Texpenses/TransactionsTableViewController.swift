@@ -75,13 +75,15 @@ class TransactionsTableViewController: UITableViewController,UISplitViewControll
 
             if let _ = model.getCurrentActiveTrip(){
                 // Delete transaction from database
-                model.deleteTransaction(transactions[indexPath.item])
+                
+                if model.deleteTransaction(transactions[indexPath.item]){
                 
                 // remove transaction from array
                 transactions.remove(at: indexPath.row)
                 
                 // remove transaction from table
-                tableView.deleteRows(at: [indexPath], with: .left)
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                }
             }
         }
     }

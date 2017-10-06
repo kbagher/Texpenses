@@ -142,7 +142,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
     /// Handles retreiving exchange rate delegate
     ///
     /// # See Also:
-    /// LocationServiceDelegate -> didRetrieveExchangeRate
+    /// APIDelegate -> didRetrieveExchangeRate
     func didRetrieveExchangeRate(rate: Double) {
         if let t = model.getCurrentActiveTrip(){
             hideActivityView()
@@ -162,7 +162,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
     /// Handles error while retrieving currencies from the server delegate
     ///
     /// # See Also:
-    /// LocationServiceDelegate -> didRetrieveCurrenciesError
+    /// APIDelegate -> didRetrieveCurrenciesError
     func didRetrieveCurrenciesError(error: NSError) {
         hideActivityView()
         let alert = UIAlertController(title: "Error", message: "Unable to retrieve currencies from server", preferredStyle: UIAlertControllerStyle.alert)
@@ -173,7 +173,7 @@ class DashboardViewController: UIViewController,UITextFieldDelegate,APIDelegate,
     /// Handles error retrieving currencies from the server delegate
     ///
     /// # See Also:
-    /// LocationServiceDelegate -> didRetrieveCurrencies
+    /// APIDelegate -> didRetrieveCurrencies
     func didRetrieveCurrencies(numOfCurrencies: Int) {
         hideActivityView()
         isAppDataReady()

@@ -62,6 +62,36 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         locationManager.delegate = self
     }
     
+    // MARK: - Delegates
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        guard let delegate = self.delegate else {
+            return
+        }
+        // inform the delegate that an error occured while gettings user's location
+        delegate.didUpdateLocationFailWithError(error: error as NSError)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let location = locations.last else {
+            return
+        }
+        
+        // update current location internally
+        self.currentLocation = location
+        
+        guard let delegate = self.delegate else {
+            print("no delegate")
+            return
+        }
+        
+        // inform the delegate that location has changed
+        delegate.didUpdateLocation(currentLocation: location)
+        
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         guard let delegate = self.delegate else {
@@ -71,6 +101,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         delegate.didChangeAuthorization!(status: status)
     }
     
+    // MARK: - Class Public Function
     
     /// Request location service authorization from the user
     func requestAuthorization(){
@@ -98,44 +129,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     func stopUpdatingLocation() {
         self.locationManager?.stopUpdatingLocation()
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
-        guard let location = locations.last else {
-            return
-        }
-        
-        // update current location internally
-        self.currentLocation = location
-
-        guard let delegate = self.delegate else {
-            print("no delegate")
-            return
-        }
-        
-        // inform the delegate that location has changed
-        delegate.didUpdateLocation(currentLocation: location)
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
-        updateLocationDidFailWithError(error: error as NSError)
-    }
-    
-    /// Failed to get user's location
-    ///
-    /// - Parameter error: error object
-    private func updateLocationDidFailWithError(error: NSError) {
-        
-        guard let delegate = self.delegate else {
-            return
-        }
-        // inform the delegate that an error occured while gettings user's location
-        delegate.didUpdateLocationFailWithError(error: error)
-    }
-    
-    
     /// Reverse user's location
     ///
     /// - Parameter locaiton: Location to be reversed
@@ -163,6 +157,5 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                     delegate.didReverseGeocode!(place: pm)
                 }}
         )
-    }
-    
+    }    
 }
