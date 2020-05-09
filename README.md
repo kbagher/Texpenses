@@ -4,7 +4,7 @@ This app is just a proof of concept for a Location-based travel expenses tracker
 
 The app has a basic UI, however the UX was given more attention following Apple's Design Guidelines.
 
-**NOTE: The API used in the application are deprecated, this might cause the app to crash**
+**NOTE: The API used in the application is deprecated, this might cause the app to crash**
 
 <img src="https://user-images.githubusercontent.com/772042/81461582-37a59b00-91f0-11ea-88ad-cb1c8180391c.png" width="30%" height="30%">
 <img src="https://user-images.githubusercontent.com/772042/81461583-396f5e80-91f0-11ea-83b9-7a1e64733a53.png" width="30%" height="30%">
